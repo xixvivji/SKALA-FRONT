@@ -1,11 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>울산 소개</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f5f5f5;
+    }
+
+    header {
+      padding: 20px;
+      background-color: #333;
+      color: white;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      border-radius: 12px;
+      background-color: #ddd;
+      box-shadow: 0 4px 12px
+        rgba(0, 0, 0, 0.2);
+    }
+
+    .slider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-description {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .page-indicator {
+      margin-top: 8px;
+      color: #666;
+    }
+
+    nav {
+      margin-top: 25px;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 6px;
+      background-color: #168aad;
+      color: white;
+      text-decoration: none;
+    }
+  </style>
 </head>
+
 <body>
-    
+  <header>
+    <h1>울산 소개 페이지</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>울산의 명소</h2>
+
+      <div class="slider">
+        <img
+          id="slide-image"
+          src="img/ulsan1.jpg"
+          alt="울산의 전경"
+        >
+      </div>
+
+      <p
+        id="image-description"
+        class="image-description"
+      >
+        울산의 대표적인 장소
+      </p>
+
+      <p
+        id="page-indicator"
+        class="page-indicator"
+      >
+        1 / 3
+      </p>
+    </section>
+
+    <nav>
+      <a href="index.html">메인페이지로 이동</a>
+    </nav>
+  </main>
+
+  <script>
+    const images = [
+      {
+        src: "img/ulsan1.jpg",
+        alt: "울산의 전경",
+        description: "울산의 대표적인 장소입니다."
+      },
+      {
+        src: "img/ulsan2.jpg",
+        alt: "울산의 밤",
+        description: "울산의 밤"
+      }
+    ];
+
+    const slideImage =
+      document.getElementById("slide-image");
+
+    const imageDescription =
+      document.getElementById("image-description");
+
+    const pageIndicator =
+      document.getElementById("page-indicator");
+
+    let currentIndex = 0;
+
+    function changeImage() {
+      currentIndex =
+        (currentIndex + 1) % images.length;
+
+      const currentImage = images[currentIndex];
+
+      slideImage.src = currentImage.src;
+      slideImage.alt = currentImage.alt;
+
+      imageDescription.textContent =
+        currentImage.description;
+
+      pageIndicator.textContent =
+        `${currentIndex + 1} / ${images.length}`;
+    }
+
+    setInterval(changeImage, 5000);
+  </script>
 </body>
 </html>
