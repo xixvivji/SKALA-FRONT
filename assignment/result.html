@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입 결과</title>
+
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid #aaa;
+      text-align: center;
+    }
+
+    th {
+      background-color: #eee;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>회원가입 결과</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>사용자 이름</th>
+        <th>아이디</th>
+        <th>이메일</th>
+        <th>성별</th>
+        <th>관심 분야</th>
+        <th>지역</th>
+      </tr>
+    </thead>
+
+    <tbody id="user-list"></tbody>
+  </table>
+
+  <div class="buttons">
+    <button type="button" onclick="location.href='signup.html'">
+      회원 추가
+    </button>
+
+    <button type="button" onclick="location.href='index.html'">
+      메인페이지
+    </button>
+  </div>
+
+  <script>
+    const users = JSON.parse(
+      localStorage.getItem("users") || "[]"
+    );
+
+    const userList = document.getElementById("user-list");
+
+    const genderNames = {
+      male: "남성",
+      female: "여성"
+    };
+
+    const interestNames = {
+      design: "디자인",
+      frontend: "프론트엔드",
+      backend: "백엔드",
+      ai: "AI"
+    };
+
+    const regionNames = {
+      seoul: "서울",
+      gwangju: "광주",
+      ulsan: "울산"
+    };
+
+    users.forEach(function (user) {
+      const row = document.createElement("tr");
+
+      const values = [
+        user.username,
+        user.userId,
+        user.email,
+        genderNames[user.gender] || "미선택",
+        user.interests
+          .map(interest => interestNames[interest])
+          .join(", ") || "미선택",
+        regionNames[user.region] || user.region
+      ];
+
+      values.forEach(function (value) {
+        const cell = document.createElement("td");
+        cell.textContent = value;
+        row.appendChild(cell);
+      });
+
+      userList.appendChild(row);
+    });
+
+    document
+      .getElementById("delete-all")
+      .addEventListener("click", function () {
+        localStorage.removeItem("users");
+        location.reload();
+      });
+  </script>
+</body>
+</html>
