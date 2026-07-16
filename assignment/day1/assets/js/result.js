@@ -1,4 +1,6 @@
-const users = JSON.parse(localStorage.getItem("users") || "[]");
+import { loadData } from "./storage.js";
+
+const users = loadData("users", []);
 const userList = document.getElementById("user-list");
 const emptyState = document.getElementById("empty-state");
 const count = document.getElementById("user-count");
@@ -14,7 +16,7 @@ const labels = {
     backend: "백엔드",
     ai: "AI"
   },
-  region: { seoul: "서울", gwangju: "광주", ulsan: "울산" }
+  region: { seoul: "서울", gwangju: "광주", ulsan: "울산", busan: "부산", jeju: "제주", gyeongju: "경주" }
 };
 
 count.textContent = `${users.length}명`;

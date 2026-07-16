@@ -2,16 +2,16 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="서울, 광주, 울산의 매력적인 여행지를 발견해 보세요.">
+  <meta name="description" content="국내 여섯 도시의 매력적인 여행지와 여행 계획을 만나보세요.">
   <title>여행의 발견 — 국내 여행지 큐레이션</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body id="top">
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">✦</span> 여행의 발견</a><button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">☰</button>
       <nav class="site-nav" aria-label="주요 메뉴">
-        <a href="#travel-video">여행 영상</a><a href="#destinations">추천 도시</a><a href="result.html">회원 목록</a><a class="nav-cta" href="signup.html">함께하기</a>
+        <a href="#travel-video">여행 영상</a><a href="#destinations">추천 도시</a><a href="planner.html">여행 계획</a><a href="result.html">회원 목록</a><a class="nav-cta" href="signup.html">함께하기</a>
       </nav>
     </div>
   </header>
@@ -23,18 +23,22 @@
           <div class="hero-content">
             <p class="eyebrow">Discover Korea</p>
             <h1 class="display-title">낯선 풍경이<br>일상이 되는 순간</h1>
-            <p>멀리 떠나지 않아도 새로운 장면은 가까이에 있습니다. 서울, 광주, 울산의 다채로운 이야기를 만나보세요.</p>
+            <p>멀리 떠나지 않아도 새로운 장면은 가까이에 있습니다. 여섯 도시의 다채로운 이야기를 만나보세요.</p>
             <div class="hero-actions"><a class="button" href="#destinations">도시 둘러보기 <span aria-hidden="true">→</span></a><a class="button secondary" href="#travel-video">영상으로 미리보기</a></div>
           </div>
         </div>
       </div>
     </section>
 
+    <section class="quote-section" aria-label="오늘의 여행 한마디">
+      <div class="container quote-card"><p class="eyebrow">Today's Inspiration</p><blockquote id="daily-quote">오늘의 여행 문구를 불러오는 중입니다.</blockquote><cite id="quote-author">여행의 발견</cite></div>
+    </section>
+
     <section id="travel-video" class="section">
       <div class="container">
         <div class="section-heading"><div><p class="eyebrow">Travel Film</p><h2 class="section-title">먼저 영상으로 떠나보세요</h2></div><p class="section-copy">도시마다 다른 온도와 표정을 한 편의 영상에 담았습니다.</p></div>
         <figure class="media-card">
-          <div class="video-carousel"><video id="carousel-video" controls poster="img/travel-img.png" preload="metadata"><source id="carousel-source" src="video/travel.mp4" type="video/mp4">브라우저가 영상 재생을 지원하지 않습니다.</video><button id="previous-video" class="video-arrow previous" type="button" aria-label="이전 영상">←</button><button id="next-video" class="video-arrow next" type="button" aria-label="다음 영상">→</button></div>
+          <div class="video-carousel"><video id="carousel-video" controls poster="assets/images/travel-img.png" preload="metadata"><source id="carousel-source" src="assets/videos/travel.mp4" type="video/mp4">브라우저가 영상 재생을 지원하지 않습니다.</video><button id="previous-video" class="video-arrow previous" type="button" aria-label="이전 영상">←</button><button id="next-video" class="video-arrow next" type="button" aria-label="다음 영상">→</button></div>
           <figcaption><div class="video-meta"><span><strong id="carousel-title">세 도시 여행 필름</strong><br><span id="carousel-description">서울, 광주, 울산의 여행지를 한 번에 만나보세요.</span></span><span id="carousel-count" class="video-count">01 / 04</span></div></figcaption>
         </figure>
       </div>
@@ -42,19 +46,15 @@
 
     <section id="destinations" class="section">
       <div class="container">
-        <div class="section-heading"><div><p class="eyebrow">Curated Cities</p><h2 class="section-title">취향에 맞는 도시를 골라보세요</h2></div><p class="section-copy">역사부터 예술, 바다까지 각기 다른 세 도시의 매력.</p></div>
-        <div class="destination-grid">
-          <a class="destination-card" href="seoul.html"><div class="destination-content"><span>01 · HISTORY &amp; CITY</span><h3>서울</h3><p>오래된 시간과 새로운 감각이 나란히 걷는 도시</p></div></a>
-          <a class="destination-card" href="gwangju.html"><div class="destination-content"><span>02 · ART &amp; TASTE</span><h3>광주</h3><p>예술과 문화, 풍성한 미식이 머무는 도시</p></div></a>
-          <a class="destination-card" href="ulsan.html"><div class="destination-content"><span>03 · OCEAN &amp; NATURE</span><h3>울산</h3><p>푸른 바다와 자연의 에너지를 품은 도시</p></div></a>
-        </div>
+        <div class="section-heading"><div><p class="eyebrow">Curated Cities</p><h2 class="section-title">취향에 맞는 도시를 골라보세요</h2></div><p class="section-copy">역사부터 예술, 바다와 섬까지 서로 다른 여섯 도시의 매력.</p></div>
+        <div id="destination-grid" class="destination-grid" aria-live="polite"></div>
       </div>
     </section>
 
-    <section class="section"><div class="container"><div class="tips"><div><p class="eyebrow">Before You Go</p><h2 class="section-title">가볍게 준비하고<br>온전히 즐기세요</h2></div><div class="tip-grid"><div class="tip-item"><strong>01 · 날씨</strong>여행 전 현지 예보 확인하기</div><div class="tip-item"><strong>02 · 이동</strong>숙소와 교통편 미리 예약하기</div><div class="tip-item"><strong>03 · 필수품</strong>신분증과 충전기 챙기기</div><div class="tip-item"><strong>04 · 안전</strong>여행자 보험 고려하기</div></div></div></div></section>
+    <section class="section"><div class="container"><div class="tips"><div><p class="eyebrow">Before You Go</p><h2 class="section-title">가볍게 준비하고<br>온전히 즐기세요</h2><a class="button planner-cta" href="planner.html">나의 여행 계획 만들기 →</a></div><div class="tip-grid"><div class="tip-item"><strong>01 · 날씨</strong>여행 전 현지 예보 확인하기</div><div class="tip-item"><strong>02 · 이동</strong>숙소와 교통편 미리 예약하기</div><div class="tip-item"><strong>03 · 필수품</strong>신분증과 충전기 챙기기</div><div class="tip-item"><strong>04 · 안전</strong>여행자 보험 고려하기</div></div></div></div></section>
   </main>
 
   <footer class="site-footer"><div class="container footer-wrap"><span>© <span data-year></span> 여행의 발견 · 김지원</span></div></footer>
-  <script src="js/common.js"></script><script src="js/video-carousel.js"></script>
+  <script type="module" src="assets/js/common.js"></script><script src="assets/js/video-carousel.js"></script><script type="module" src="assets/js/destinations.js"></script><script type="module" src="assets/js/quote.js"></script>
 </body>
 </html>

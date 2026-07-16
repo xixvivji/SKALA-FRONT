@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="여행지별 준비 항목을 관리하는 여행 플래너"><title>여행 계획 — 여행의 발견</title><link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">✦</span> 여행의 발견</a><button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">☰</button><nav class="site-nav" aria-label="주요 메뉴"><a href="index.html">홈</a><a href="index.html#destinations">추천 도시</a><a aria-current="page" href="planner.html">여행 계획</a><a class="nav-cta" href="signup.html">함께하기</a></nav></div></header>
+  <main>
+    <section class="page-hero container"><p class="eyebrow">Travel Planner</p><h1 class="display-title">설레는 여행을<br>하나씩 준비하세요</h1><p class="section-copy">여행지를 고르고 해야 할 일을 기록하면 이 브라우저에 안전하게 저장됩니다.</p></section>
+    <section class="container planner-layout">
+      <aside class="planner-side">
+        <p class="eyebrow">Today's Inspiration</p>
+        <blockquote id="daily-quote">오늘의 여행 문구를 불러오는 중입니다.</blockquote>
+        <cite id="quote-author">여행의 발견</cite>
+        <label for="destination-select">계획할 여행지</label>
+        <select id="destination-select"></select>
+        <a id="destination-link" class="button secondary" href="destination.html">여행지 정보 보기 →</a>
+      </aside>
+      <div class="planner-main">
+        <section class="trip-settings" aria-labelledby="trip-settings-title">
+          <div class="trip-settings-heading"><div><p class="eyebrow">Trip Schedule</p><h2 id="trip-settings-title">여행 기본 정보</h2></div><p id="plan-owner"></p></div>
+          <form id="trip-form" class="trip-form">
+            <div class="form-group trip-title-field"><label for="trip-title">여행 이름</label><input id="trip-title" type="text" maxlength="50" required placeholder="예: 여름 제주 여행"></div>
+            <div class="form-group"><label for="trip-start">시작일</label><input id="trip-start" type="date" required></div>
+            <div class="form-group"><label for="trip-end">종료일</label><input id="trip-end" type="date" required></div>
+            <button class="button" type="submit">여행 정보 저장</button>
+          </form>
+        </section>
+        <section class="todo-app" aria-labelledby="schedule-title">
+        <div class="todo-title"><div><p class="eyebrow">Daily Schedule</p><h2 id="schedule-title">일정 및 준비 항목</h2></div></div>
+        <form id="todo-form" class="todo-form">
+          <div class="form-group todo-text-field"><label for="todo-input">일정 내용</label><input id="todo-input" type="text" maxlength="80" autocomplete="off" required placeholder="예: 렌터카 찾기"></div>
+          <div class="form-group"><label for="todo-date">날짜</label><input id="todo-date" type="date" required></div>
+          <div class="form-group"><label for="todo-time">시간</label><input id="todo-time" type="time"></div>
+          <div class="todo-form-actions"><button id="todo-submit" class="button" type="submit">일정 추가</button><button id="todo-cancel" class="button secondary" type="button" hidden>수정 취소</button></div>
+        </form>
+        <div class="todo-toolbar">
+          <div class="todo-filters" aria-label="할 일 필터">
+            <button class="is-active" type="button" data-filter="all">전체</button>
+            <button type="button" data-filter="active">진행 중</button>
+            <button type="button" data-filter="done">완료</button>
+          </div>
+          <p id="todo-summary">전체 0개 · 완료 0개</p>
+        </div>
+        <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
+        <div id="todo-empty" class="todo-empty"><strong>준비할 항목이 없습니다</strong><span>위 입력창에서 첫 번째 계획을 추가해 보세요.</span></div>
+        </section>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container footer-wrap"><span>© <span data-year></span> 여행의 발견 · 김지원</span><a class="back-top" href="index.html">메인으로 →</a></div></footer>
+  <script type="module" src="assets/js/common.js"></script><script type="module" src="assets/js/planner.js"></script><script type="module" src="assets/js/quote.js"></script>
+</body>
+</html>
