@@ -1,428 +1,57 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>여행지 소개</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      padding-top: 105px;
-      font-family: Arial, sans-serif;
-      background-color: #f4f8fb;
-      color: #222;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-      width: 100%;
-      padding: 20px 40px;
-      background-color: white;
-      border-bottom: 1px solid #ddd;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    header h1 {
-      margin: 0 0 15px;
-    }
-
-    header > nav {
-      display: flex;
-      gap: 10px;
-    }
-
-    nav a {
-      padding: 10px 16px;
-      border-radius: 6px;
-      background-color: #168aad;
-      color: white;
-      text-decoration: none;
-      transition: background-color 0.3s, transform 0.3s;
-    }
-
-    nav a:hover {
-      background-color: #0f6f8c;
-      transform: translateY(-2px);
-    }
-
-    nav a + a {
-      border-left: 2px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .hero {
-      position: relative;
-      min-height: 450px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 100px 20px;
-      overflow: hidden;
-      text-align: center;
-      color: white;
-      background-image: url("img/seoul1.jpg");
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background: linear-gradient(
-        135deg,
-        rgba(22, 138, 173, 0.75),
-        rgba(118, 200, 147, 0.6)
-      );
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero h2 {
-      margin: 0 0 16px;
-      font-size: 42px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-    }
-
-    .hero p {
-      font-size: 18px;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-    }
-
-    .hero a {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 10px 16px;
-      border: 1px solid white;
-      border-radius: 6px;
-      color: white;
-      text-decoration: none;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    .hero a:hover {
-      background-color: white;
-      color: #168aad;
-    }
-
-    .video-section {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 50px 20px 10px;
-      text-align: center;
-    }
-
-    .video-section h2 {
-      color: #168aad;
-    }
-
-    figure {
-      margin: 0;
-      padding: 20px;
-      border-radius: 12px;
-      background-color: white;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    video {
-      display: block;
-      width: 100%;
-      max-height: 550px;
-      border-radius: 10px;
-      background-color: #111;
-    }
-
-    figcaption {
-      margin-top: 14px;
-      color: #555;
-      line-height: 1.6;
-    }
-
-    main {
-      display: grid;
-      grid-template-columns: 3fr 1fr;
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 50px 20px;
-    }
-
-    #destinations,
-    #travel-video {
-      scroll-margin-top: 130px;
-    }
-
-    #destinations > h2 {
-      margin-top: 0;
-      color: #168aad;
-    }
-
-    .card-container {
-      display: grid;
-      grid-template-columns: repeat(
-        auto-fit,
-        minmax(220px, 1fr)
-      );
-      gap: 20px;
-    }
-
-    .card-container > article {
-      padding: 24px;
-      border-radius: 12px;
-      background-color: white;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .card-container > article:hover {
-      transform: scale(1.06);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
-    }
-
-    article .emoji {
-      font-size: 50px;
-    }
-
-    article h3 {
-      margin: 15px 0 10px;
-    }
-
-    article p {
-      min-height: 50px;
-      line-height: 1.6;
-      color: #555;
-    }
-
-    article a {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 5px;
-      background-color: #168aad;
-      color: white;
-      text-decoration: none;
-      transition: background-color 0.3s, transform 0.3s;
-    }
-
-    article a:hover {
-      background-color: #0f6f8c;
-      transform: scale(1.05);
-    }
-
-    aside {
-      align-self: start;
-      padding: 24px;
-      border-left: 5px solid #168aad;
-      border-radius: 12px;
-      background-color: #e8f7f2;
-    }
-
-    aside h2 {
-      margin-top: 0;
-    }
-
-    aside ul > li {
-      margin-bottom: 12px;
-      line-height: 1.5;
-    }
-
-    aside ul > li:hover {
-      color: #168aad;
-      font-weight: bold;
-    }
-
-    .top-button {
-      position: fixed;
-      right: 25px;
-      bottom: 25px;
-      z-index: 999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: #168aad;
-      color: white;
-      text-decoration: none;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-      transition: background-color 0.3s, transform 0.3s;
-    }
-
-    .top-button:hover {
-      background-color: #0f6f8c;
-      transform: translateY(-5px);
-    }
-
-    footer {
-      padding: 25px;
-      text-align: center;
-      background-color: #222;
-      color: white;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding-top: 155px;
-      }
-
-      header {
-        padding: 20px;
-      }
-
-      header > nav {
-        flex-wrap: wrap;
-      }
-
-      main {
-        grid-template-columns: 1fr;
-      }
-
-      #destinations,
-      #travel-video {
-        scroll-margin-top: 170px;
-      }
-
-      .hero {
-        min-height: 380px;
-      }
-
-      .hero h2 {
-        font-size: 30px;
-      }
-
-      .card-container > article:hover {
-        transform: scale(1.03);
-      }
-    }
-  </style>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="서울, 광주, 울산의 매력적인 여행지를 발견해 보세요.">
+  <title>여행의 발견 — 국내 여행지 큐레이션</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body id="top">
-  <header>
-    <h1>🏖 여행지 소개</h1>
-
-    <nav aria-label="주요 메뉴">
-      <a href="#top">홈</a>
-      <a href="#travel-video">여행 영상</a>
-      <a href="#destinations">추천 여행지</a>
-      <a href="signup.html">회원가입</a>
-      <a href="result.html">회원 목록</a>
-    </nav>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">✦</span> 여행의 발견</a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="#travel-video">여행 영상</a><a href="#destinations">추천 도시</a><a href="result.html">회원 목록</a><a class="nav-cta" href="signup.html">함께하기</a>
+      </nav>
+    </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h2>어디로 여행을 떠나볼까요?</h2>
-      <p>국내의 아름다운 여행지를 만나보세요.</p>
-      <a href="#destinations">추천 여행지 보기</a>
-    </div>
-  </section>
-
-  <section id="travel-video" class="video-section">
-    <h2>여행 영상</h2>
-
-    <figure>
-      <video
-        controls
-        poster="img/travel-img.png"
-        preload="metadata"
-      >
-        <source src="video/travel.mp4" type="video/mp4">
-        브라우저가 영상 재생을 지원하지 않습니다.
-      </video>
-
-      <figcaption>
-        서울, 광주, 울산의 아름다운 여행지를 영상으로 만나보세요.
-      </figcaption>
-    </figure>
-  </section>
-
   <main>
-    <section id="destinations">
-      <h2>추천 여행지</h2>
-
-      <div class="card-container">
-        <article>
-          <div class="emoji" aria-hidden="true">🌆</div>
-          <h3>서울</h3>
-          <p>역사와 현대 문화가 공존하는 대한민국의 수도입니다.</p>
-          <a href="seoul.html">자세히 보기</a>
-        </article>
-
-        <article>
-          <div class="emoji" aria-hidden="true">🏙</div>
-          <h3>광주</h3>
-          <p>예술과 문화, 맛있는 음식이 가득한 도시입니다.</p>
-          <a href="gwangju.html">자세히 보기</a>
-        </article>
-
-        <article>
-          <div class="emoji" aria-hidden="true">🌃</div>
-          <h3>울산</h3>
-          <p>아름다운 바다와 자연을 함께 만날 수 있는 도시입니다.</p>
-          <a href="ulsan.html">자세히 보기</a>
-        </article>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card" data-hero>
+          <div class="hero-content">
+            <p class="eyebrow">Discover Korea</p>
+            <h1 class="display-title">낯선 풍경이<br>일상이 되는 순간</h1>
+            <p>멀리 떠나지 않아도 새로운 장면은 가까이에 있습니다. 서울, 광주, 울산의 다채로운 이야기를 만나보세요.</p>
+            <div class="hero-actions"><a class="button" href="#destinations">도시 둘러보기 <span aria-hidden="true">→</span></a><a class="button secondary" href="#travel-video">영상으로 미리보기</a></div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <aside>
-      <h2>여행 준비 팁</h2>
+    <section id="travel-video" class="section">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow">Travel Film</p><h2 class="section-title">먼저 영상으로 떠나보세요</h2></div><p class="section-copy">도시마다 다른 온도와 표정을 한 편의 영상에 담았습니다.</p></div>
+        <figure class="media-card"><video controls poster="img/travel-img.png" preload="metadata"><source src="video/travel.mp4" type="video/mp4">브라우저가 영상 재생을 지원하지 않습니다.</video><figcaption><span>서울 · 광주 · 울산 여행 필름</span><span>Play with sound</span></figcaption></figure>
+      </div>
+    </section>
 
-      <ul>
-        <li>여행지의 날씨를 미리 확인하세요.</li>
-        <li>숙소와 교통편을 예약하세요.</li>
-        <li>신분증과 충전기를 챙기세요.</li>
-        <li>여행자 보험도 고려해 보세요.</li>
-      </ul>
-    </aside>
+    <section id="destinations" class="section">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow">Curated Cities</p><h2 class="section-title">취향에 맞는 도시를 골라보세요</h2></div><p class="section-copy">역사부터 예술, 바다까지 각기 다른 세 도시의 매력.</p></div>
+        <div class="destination-grid">
+          <a class="destination-card" href="seoul.html"><div class="destination-content"><span>01 · HISTORY &amp; CITY</span><h3>서울</h3><p>오래된 시간과 새로운 감각이 나란히 걷는 도시</p></div></a>
+          <a class="destination-card" href="gwangju.html"><div class="destination-content"><span>02 · ART &amp; TASTE</span><h3>광주</h3><p>예술과 문화, 풍성한 미식이 머무는 도시</p></div></a>
+          <a class="destination-card" href="ulsan.html"><div class="destination-content"><span>03 · OCEAN &amp; NATURE</span><h3>울산</h3><p>푸른 바다와 자연의 에너지를 품은 도시</p></div></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section"><div class="container"><div class="tips"><div><p class="eyebrow">Before You Go</p><h2 class="section-title">가볍게 준비하고<br>온전히 즐기세요</h2></div><div class="tip-grid"><div class="tip-item"><strong>01 · 날씨</strong>여행 전 현지 예보 확인하기</div><div class="tip-item"><strong>02 · 이동</strong>숙소와 교통편 미리 예약하기</div><div class="tip-item"><strong>03 · 필수품</strong>신분증과 충전기 챙기기</div><div class="tip-item"><strong>04 · 안전</strong>여행자 보험 고려하기</div></div></div></div></section>
   </main>
 
-  <a
-    href="#top"
-    class="top-button"
-    aria-label="페이지 맨 위로 이동"
-  >
-    ↑
-  </a>
-
-  <footer>
-    <p>© 2026 여행지 소개. 김지원</p>
-  </footer>
-<script>
-  const hero = document.querySelector(".hero");
-
-  const heroImages = [
-    "img/seoul1.jpg",
-    "img/gwangju1.jpg",
-    "img/ulsan1.jpg"
-  ];
-
-  let heroIndex = 0;
-
-  function changeHeroBackground() {
-    heroIndex = (heroIndex + 1) % heroImages.length;
-    hero.style.backgroundImage =
-      `url("${heroImages[heroIndex]}")`;
-  }
-
-  setInterval(changeHeroBackground, 5000);
-</script>
+  <footer class="site-footer"><div class="container footer-wrap"><span>© <span data-year></span> 여행의 발견 · 김지원</span><a class="back-top" href="#top">맨 위로 ↑</a></div></footer>
+  <script src="js/common.js"></script>
 </body>
 </html>
