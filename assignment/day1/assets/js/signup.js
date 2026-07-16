@@ -47,6 +47,7 @@ form.addEventListener("submit", async (event) => {
     gender: document.querySelector('input[name="gender"]:checked').value,
     interests: [...document.querySelectorAll('input[name="interests"]:checked')].map((item) => item.value),
     region: document.getElementById("region").value,
+    introduction: document.getElementById("introduction").value.trim(),
     password: passwordRecord
   };
   if (existingIndex >= 0) users[existingIndex] = user;

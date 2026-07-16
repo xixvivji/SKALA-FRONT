@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="여행의 발견 도시 상세 페이지"><title>도시 여행 — 여행의 발견</title><link rel="stylesheet" href="assets/css/style.css">
+  <meta name="author" content="김지원">
 </head>
-<body>
+<body id="top">
   <header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">✦</span> 여행의 발견</a><button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">☰</button><nav class="site-nav" aria-label="도시 페이지 메뉴"><a href="#landmarks">명소</a><a href="#films">여행 영상</a><a href="#food">먹거리</a><a href="planner.html">여행 계획</a><a class="nav-cta" href="index.html#destinations">도시 둘러보기</a></nav></div></header>
   <main id="destination-root" hidden>
     <section class="city-intro"><div class="container"><p id="city-eyebrow" class="eyebrow"></p><h1 id="city-title" class="display-title"></h1><p id="city-description" class="section-copy"></p><a id="plan-city" class="button city-plan-button" href="planner.html">이 도시 여행 준비하기 →</a></div></section>
@@ -13,7 +14,7 @@
     <section id="food" class="section"><div class="container"><div class="section-heading"><div><p class="eyebrow">Local Food</p><h2 id="food-title" class="section-title"></h2></div></div><div class="food-layout"><article class="food-article"><img id="food-image" alt=""><div class="food-copy"><p id="food-eyebrow" class="eyebrow"></p><h3 id="food-name"></h3><p id="food-description"></p></div></article><aside class="food-tips"><p class="eyebrow">Food Tips</p><h3>맛있게 즐기는 팁</h3><ul id="food-tip-list"></ul></aside></div></div></section>
   </main>
   <section id="destination-error" class="page-hero container" hidden><p class="eyebrow">Not Found</p><h1 class="section-title">여행지를 찾을 수 없습니다</h1><p class="section-copy">메인 페이지에서 다시 여행지를 선택해 주세요.</p><a class="button" href="index.html#destinations">여행지 선택하기</a></section>
-  <footer class="site-footer"><div class="container footer-wrap"><span>© <span data-year></span> 여행의 발견 · 김지원</span><a class="back-top" href="index.html">메인으로 →</a></div></footer>
+  <footer class="site-footer"><div class="container footer-wrap"><span>© <span data-year></span> 여행의 발견 · 김지원</span><a class="back-top" href="#top">↑ 맨 위로</a></div></footer>
   <script type="module" src="assets/js/common.js"></script><script type="module" src="assets/js/destination.js"></script>
 </body>
 </html>

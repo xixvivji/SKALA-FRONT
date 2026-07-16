@@ -30,7 +30,8 @@ users.forEach((user) => {
     user.email,
     labels.gender[user.gender] || "미선택",
     (user.interests || []).map((item) => labels.interest[item] || item).join(", ") || "미선택",
-    labels.region[user.region] || user.region
+    labels.region[user.region] || user.region,
+    user.introduction || "미입력"
   ];
   values.forEach((value) => {
     const cell = document.createElement("td");
