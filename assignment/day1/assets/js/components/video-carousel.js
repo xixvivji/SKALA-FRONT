@@ -7,10 +7,10 @@ const previousVideo = document.getElementById("previous-video");
 const nextVideo = document.getElementById("next-video");
 
 const videos = [
-  { src: "assets/videos/travel.mp4", poster: "assets/images/travel-img.png", title: "세 도시 여행 필름", description: "서울, 광주, 울산의 여행지를 한 번에 만나보세요." },
-  { src: "assets/videos/seoul1.mp4", poster: "assets/images/seoul1.jpg", title: "서울 여행 필름", description: "도시의 오래된 시간과 새로운 활기를 느껴보세요." },
-  { src: "assets/videos/gwangju1.mp4", poster: "assets/images/gwangju1.jpg", title: "광주 여행 필름", description: "예술과 여유가 흐르는 광주의 순간을 담았습니다." },
-  { src: "assets/videos/ulsan1.mp4", poster: "assets/images/ulsan1.jpg", title: "울산 여행 필름", description: "바다와 자연의 에너지를 영상으로 만나보세요." }
+  { src: "assets/videos/common/travel.mp4", poster: "assets/images/common/travel-img.png", title: "세 도시 여행 필름", description: "서울, 광주, 울산의 여행지를 한 번에 만나보세요." },
+  { src: "assets/videos/seoul/seoul1.mp4", poster: "assets/images/seoul/seoul1.jpg", title: "서울 여행 필름", description: "도시의 오래된 시간과 새로운 활기를 느껴보세요." },
+  { src: "assets/videos/gwangju/gwangju1.mp4", poster: "assets/images/gwangju/gwangju1.jpg", title: "광주 여행 필름", description: "예술과 여유가 흐르는 광주의 순간을 담았습니다." },
+  { src: "assets/videos/ulsan/ulsan1.mp4", poster: "assets/images/ulsan/ulsan1.jpg", title: "울산 여행 필름", description: "바다와 자연의 에너지를 영상으로 만나보세요." }
 ];
 let videoIndex = 0;
 

@@ -1,4 +1,4 @@
-import { destinations } from "./data/destinations.js";
+import { destinations } from "../data/destinations.js?v=2";
 
 const grid = document.getElementById("destination-grid");
 

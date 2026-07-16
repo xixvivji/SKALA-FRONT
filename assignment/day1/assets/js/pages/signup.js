@@ -1,4 +1,4 @@
-import { createPasswordRecord, getUsers, saveUsers } from "./auth.js";
+import { createPasswordRecord, getUsers, saveUsers } from "../core/auth.js";
 
 const form = document.getElementById("signup-form");
 const password = document.getElementById("password");

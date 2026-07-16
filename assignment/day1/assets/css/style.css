@@ -127,7 +127,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .button.secondary:hover { background: var(--surface-soft); }
 
 .hero { padding: 42px 0 80px; }
-.hero-card { position: relative; min-height: 650px; display: flex; align-items: flex-end; overflow: hidden; border-radius: 38px; background: var(--hero-fallback) url("../images/seoul1.jpg") center/cover; box-shadow: var(--shadow); isolation: isolate; transition: background-image .8s ease; }
+.hero-card { position: relative; min-height: 650px; display: flex; align-items: flex-end; overflow: hidden; border-radius: 38px; background: var(--hero-fallback) url("../images/seoul/seoul1.jpg") center/cover; box-shadow: var(--shadow); isolation: isolate; transition: background-image .8s ease; }
 .hero-card::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, var(--image-overlay-soft) 15%, var(--image-overlay) 100%); }
 .hero-content { width: min(760px, 100%); padding: clamp(30px, 6vw, 70px); color: var(--on-image); }
 .hero-content .eyebrow { color: var(--highlight-text); }
@@ -152,9 +152,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .destination-card { position: relative; min-height: 420px; display: flex; align-items: flex-end; overflow: hidden; border-radius: var(--radius-lg); color: var(--on-image); background-position: center; background-size: cover; box-shadow: var(--shadow); text-decoration: none; isolation: isolate; opacity: 0; animation: card-rise .65s ease forwards; transition: transform .3s ease, box-shadow .3s ease; }
 .destination-card:hover { transform: translateY(-8px); box-shadow: var(--card-hover-shadow); }
 .destination-card::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 35%, var(--image-overlay-strong)); }
-.destination-card:nth-child(1) { background-image: url("../images/seoul2.jpg"); }
-.destination-card:nth-child(2) { background-image: url("../images/gwangju1.jpg"); }
-.destination-card:nth-child(3) { background-image: url("../images/ulsan2.jpg"); }
+.destination-card:nth-child(1) { background-image: url("../images/seoul/seoul2.jpg"); }
+.destination-card:nth-child(2) { background-image: url("../images/gwangju/gwangju1.jpg"); }
+.destination-card:nth-child(3) { background-image: url("../images/ulsan/ulsan2.jpg"); }
 .destination-content { width: 100%; padding: 28px; }
 .destination-content span { color: var(--on-image-muted); font-size: .82rem; font-weight: 800; letter-spacing: .12em; }
 .destination-content h3 { margin: 5px 0; font-size: 2rem; letter-spacing: -.04em; }

@@ -1,4 +1,4 @@
-import { findDestination } from "./data/destinations.js";
+import { findDestination } from "../data/destinations.js?v=2";
 
 const params = new URLSearchParams(location.search);
 const destination = findDestination(params.get("city"));

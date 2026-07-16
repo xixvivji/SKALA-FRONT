@@ -1,6 +1,6 @@
-import { getCurrentUser, redirectToLogin } from "./auth.js";
-import { destinations, findDestination } from "./data/destinations.js";
-import { loadData, saveData } from "./storage.js";
+import { getCurrentUser, redirectToLogin } from "../core/auth.js";
+import { destinations, findDestination } from "../data/destinations.js?v=2";
+import { loadData, saveData } from "../core/storage.js";
 
 const currentUser = getCurrentUser();
 if (!currentUser) {

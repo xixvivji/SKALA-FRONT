@@ -1,4 +1,4 @@
-import { getCurrentUser, getSafeRedirect, getUsers, setCurrentUser, verifyPassword } from "./auth.js";
+import { getCurrentUser, getSafeRedirect, getUsers, setCurrentUser, verifyPassword } from "../core/auth.js";
 
 const currentUser = getCurrentUser();
 if (currentUser) location.replace(getSafeRedirect("planner.html"));

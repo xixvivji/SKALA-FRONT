@@ -79,7 +79,7 @@ updateTopButton();
 
 const hero = document.querySelector("[data-hero]");
 if (hero && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  const images = ["assets/images/seoul1.jpg", "assets/images/gwangju1.jpg", "assets/images/ulsan1.jpg"];
+  const images = ["assets/images/seoul/seoul1.jpg", "assets/images/gwangju/gwangju1.jpg", "assets/images/ulsan/ulsan1.jpg"];
   let index = 0;
   window.setInterval(() => {
     index = (index + 1) % images.length;

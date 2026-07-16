@@ -1,4 +1,4 @@
-import { loadData } from "./storage.js";
+import { loadData } from "../core/storage.js";
 
 const users = loadData("users", []);
 const userList = document.getElementById("user-list");
