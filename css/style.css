@@ -482,3 +482,79 @@ nav a:hover {
     grid-template-columns: 1fr;
   }
 }
+@media (max-width: 786px) {
+  body {
+    padding: 15px;
+  }
+
+  .container {
+    width: 100%;
+    margin: 15px auto;
+    padding: 20px;
+  }
+
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  nav li {
+    width: 100%;
+  }
+
+  nav a {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .content-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .content-layout main,
+  .content-layout aside {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .trip-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trip-grid .trip-card {
+    width: 100%;
+  }
+
+  .trip-grid .trip-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  img,
+  video,
+  audio {
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  th,
+  td {
+    padding: 6px;
+  }
+}
