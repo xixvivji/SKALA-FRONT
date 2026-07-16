@@ -81,6 +81,15 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .media-card { overflow: hidden; padding: 12px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow); }
 .media-card video { display: block; width: 100%; max-height: 620px; border-radius: 22px; background: #081b1d; object-fit: cover; }
 .media-card figcaption { display: flex; justify-content: space-between; gap: 20px; padding: 18px 12px 8px; color: var(--muted); }
+.video-carousel { position: relative; }
+.video-carousel video { aspect-ratio: 16 / 9; }
+.video-arrow { position: absolute; top: 50%; z-index: 2; width: 52px; height: 52px; border: 1px solid rgba(255,255,255,.5); border-radius: 50%; cursor: pointer; color: #fff; background: rgba(4,25,27,.58); backdrop-filter: blur(10px); font-size: 1.35rem; transform: translateY(-50%); transition: background .2s ease, transform .2s ease; }
+.video-arrow:hover { background: var(--primary); transform: translateY(-50%) scale(1.06); }
+.video-arrow.previous { left: 24px; }
+.video-arrow.next { right: 24px; }
+.video-meta { display: flex; justify-content: space-between; gap: 20px; width: 100%; }
+.video-meta strong { color: var(--ink); }
+.video-count { flex: 0 0 auto; font-weight: 800; color: var(--primary); }
 .destination-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 .destination-card { position: relative; min-height: 420px; display: flex; align-items: flex-end; overflow: hidden; border-radius: var(--radius-lg); color: #fff; background-position: center; background-size: cover; box-shadow: var(--shadow); text-decoration: none; isolation: isolate; transition: transform .3s ease; }
 .destination-card:hover { transform: translateY(-8px); }
@@ -130,6 +139,27 @@ td { font-size: .94rem; }
 .empty-state strong { display: block; margin-bottom: 8px; color: var(--ink); font-size: 1.25rem; }
 
 .destination-hero { padding: 42px 0 100px; }
+.city-intro { padding: 72px 0 40px; }
+.city-intro .section-copy { max-width: 650px; }
+.landmark-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.landmark-card { overflow: hidden; margin: 0; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow); }
+#city-film { scroll-margin-top: 110px; }
+.landmark-card img, .landmark-card video { display: block; width: 100%; height: 310px; object-fit: cover; background: #102a2e; }
+.landmark-card figcaption { padding: 22px 24px 25px; }
+.landmark-card figcaption strong { display: block; margin-bottom: 6px; font-size: 1.2rem; letter-spacing: -.03em; }
+.landmark-card figcaption span { color: var(--muted); font-size: .94rem; }
+.food-layout { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(280px, .8fr); gap: 24px; align-items: stretch; }
+.food-article { display: grid; grid-template-columns: minmax(260px, 1fr) 1fr; overflow: hidden; border-radius: var(--radius-lg); color: #fff; background: var(--ink); box-shadow: var(--shadow); }
+.food-article img { width: 100%; height: 100%; min-height: 430px; object-fit: cover; }
+.food-copy { align-self: center; padding: clamp(28px, 4vw, 48px); }
+.food-copy .eyebrow { color: #9ee6d7; }
+.food-copy h3 { margin: 0 0 16px; font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.15; letter-spacing: -.05em; }
+.food-copy p { color: rgba(255,255,255,.74); }
+.food-tips { padding: 34px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow); }
+.food-tips h3 { margin: 0 0 18px; font-size: 1.35rem; letter-spacing: -.03em; }
+.food-tips ul { margin: 0; padding: 0; list-style: none; }
+.food-tips li { padding: 15px 0; border-bottom: 1px solid var(--line); color: var(--muted); }
+.food-tips li:last-child { border-bottom: 0; }
 .gallery { display: grid; grid-template-columns: 1fr 320px; gap: 24px; }
 .gallery-stage { position: relative; min-height: 650px; overflow: hidden; border-radius: 36px; background: #dfe8e5; box-shadow: var(--shadow); }
 .gallery-stage img { position: absolute; width: 100%; height: 100%; object-fit: cover; transition: opacity .35s ease; }
@@ -156,6 +186,10 @@ td { font-size: .94rem; }
   .tips, .form-layout, .gallery { grid-template-columns: 1fr; }
   .form-intro { position: static; }
   .gallery-panel { min-height: 300px; }
+  .landmark-gallery { grid-template-columns: 1fr 1fr; }
+  .landmark-card:last-child { grid-column: 1 / -1; }
+  .food-layout, .food-article { grid-template-columns: 1fr; }
+  .food-article img { min-height: 360px; max-height: 480px; }
 }
 @media (max-width: 680px) {
   .container { width: min(calc(100% - 24px), var(--max-width)); }
@@ -174,6 +208,13 @@ td { font-size: .94rem; }
   .form-actions .button { width: 100%; }
   .gallery-stage { min-height: 560px; border-radius: 26px; }
   .gallery-overlay { padding-inline: 24px; }
+  .city-intro { padding-top: 52px; }
+  .landmark-gallery { grid-template-columns: 1fr; }
+  .landmark-card:last-child { grid-column: auto; }
+  .landmark-card img, .landmark-card video { height: 280px; }
+  .video-arrow { width: 44px; height: 44px; }
+  .video-arrow.previous { left: 12px; }
+  .video-arrow.next { right: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
