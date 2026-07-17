@@ -1,4 +1,5 @@
 const $ = (selector) => document.querySelector(selector);
+document.documentElement.classList.add('js-enhanced');
 const store = {
   get(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; } },
   set(key, value) { localStorage.setItem(key, JSON.stringify(value)); }
@@ -103,6 +104,8 @@ $('#projectModalVideo').addEventListener('error', () => {
   $('#projectVideoFallback').hidden = false;
 });
 
+// 이전 GitHub Activity 및 타자 게임 마크업을 다시 사용할 경우에만 초기화합니다.
+if (document.querySelector('#github-activity, #arcade')) {
 async function loadGitHubActivity() {
   const now = new Date();
   const year = now.getFullYear();
@@ -297,6 +300,7 @@ async function loadRanking() {
   $('#rankingList').innerHTML = unique.length ? unique.map((row, index) => `<li><b>${index + 1}</b><span>${escapeHtml(row.username)}</span><strong>${row.cpm}타</strong><span>${new Date(row.created_at).toLocaleDateString('ko-KR')}</span></li>`).join('') : '<li class="loading-row">아직 등록된 기록이 없습니다.</li>';
 }
 $('#refreshRanking').addEventListener('click', loadRanking);
+}
 
 let guestbookRows = [];
 let guestbookPage = 1;
@@ -365,9 +369,6 @@ const visitCount = store.get('jiwon-visits', 0) + 1;
 store.set('jiwon-visits', visitCount);
 $('#visitorCount').textContent = String(visitCount);
 loadMessages();
-loadRanking();
-loadGitHubActivity();
-loadGitHubProfileStats();
 
 const backToTop = $('#backToTop');
 const updateBackToTop = () => backToTop.classList.toggle('show', window.scrollY > 480);
@@ -393,3 +394,174 @@ navToggle.addEventListener('click', () => {
 });
 document.querySelectorAll('#mainNav a').forEach((link) => link.addEventListener('click', closeMobileMenu));
 window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMobileMenu(); });
+
+const localTime = $('#localTime');
+function updateLocalTime() {
+  if (!localTime) return;
+  const time = new Intl.DateTimeFormat('ko-KR', {
+    timeZone: 'Asia/Seoul',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  }).format(new Date());
+  localTime.textContent = `${time} KST`;
+}
+updateLocalTime();
+setInterval(updateLocalTime, 30000);
+
+const motionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const storyTimeline = $('.story-timeline');
+const storySteps = [...document.querySelectorAll('.story-timeline li')];
+
+if ('IntersectionObserver' in window && !motionReduced) {
+  const storyObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      storySteps.forEach((step) => step.classList.toggle('is-active', step === entry.target));
+    });
+  }, { rootMargin: '-22% 0px -48%', threshold: 0.25 });
+  storySteps.forEach((step) => storyObserver.observe(step));
+} else {
+  storySteps.forEach((step) => step.classList.add('is-visible'));
+}
+
+function updateScrollEffects() {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  document.body.style.setProperty('--section-progress', scrollable > 0 ? Math.min(1, window.scrollY / scrollable) : 0);
+  if (!storyTimeline) return;
+  const rect = storyTimeline.getBoundingClientRect();
+  const start = window.innerHeight * 0.72;
+  const distance = rect.height + window.innerHeight * 0.25;
+  const progress = Math.min(1, Math.max(0, (start - rect.top) / distance));
+  storyTimeline.style.setProperty('--story-progress', progress.toFixed(3));
+}
+window.addEventListener('scroll', updateScrollEffects, { passive: true });
+window.addEventListener('resize', updateScrollEffects);
+updateScrollEffects();
+
+const observedSections = [...document.querySelectorAll('main > section[id]')];
+const sectionNavLinks = [...document.querySelectorAll('#mainNav a[href^="#"]')];
+if ('IntersectionObserver' in window) {
+  const sectionObserver = new IntersectionObserver((entries) => {
+    const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    const sectionId = visible.target.id;
+    document.body.dataset.activeSection = sectionId;
+    sectionNavLinks.forEach((link) => {
+      const active = link.getAttribute('href') === `#${sectionId}`;
+      if (active) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  }, { rootMargin: '-28% 0px -55%', threshold: [0, 0.15, 0.35] });
+  observedSections.forEach((section) => sectionObserver.observe(section));
+}
+
+const canTilt = window.matchMedia('(hover:hover) and (pointer:fine)').matches && !motionReduced;
+if (canTilt) {
+  document.querySelectorAll('.now-card').forEach((card) => {
+    let tiltFrame = 0;
+    card.addEventListener('pointermove', (event) => {
+      cancelAnimationFrame(tiltFrame);
+      tiltFrame = requestAnimationFrame(() => {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+        card.style.setProperty('--tilt-x', `${(0.5 - y) * 7}deg`);
+        card.style.setProperty('--tilt-y', `${(x - 0.5) * 7}deg`);
+        card.style.setProperty('--glow-x', `${x * 100}%`);
+        card.style.setProperty('--glow-y', `${y * 100}%`);
+        card.classList.add('is-tilting');
+      });
+    });
+    card.addEventListener('pointerleave', () => {
+      cancelAnimationFrame(tiltFrame);
+      card.classList.remove('is-tilting');
+      card.style.removeProperty('--tilt-x');
+      card.style.removeProperty('--tilt-y');
+    });
+  });
+}
+
+const conversationQuestions = [
+  '요즘 가장 재미있게 배우는 기술은 무엇인가요?',
+  '최근 해결해서 가장 뿌듯했던 오류는 무엇인가요?',
+  '처음 배운 프로그래밍 언어는 무엇인가요?',
+  '지금 가장 만들어 보고 싶은 서비스는 무엇인가요?',
+  '개발 공부가 잘되지 않을 때 어떻게 다시 시작하나요?',
+  '함께 공부해 보고 싶은 주제가 있나요?'
+];
+let questionIndex = 0;
+const dailyQuestion = $('#dailyQuestion');
+const newQuestion = $('#newQuestion');
+if (dailyQuestion && newQuestion) {
+  newQuestion.addEventListener('click', () => {
+    questionIndex = (questionIndex + 1) % conversationQuestions.length;
+    dailyQuestion.animate?.([{ opacity: 0, transform: 'translateY(5px)' }, { opacity: 1, transform: 'none' }], { duration: 240 });
+    dailyQuestion.textContent = conversationQuestions[questionIndex];
+  });
+}
+
+const introOverlay = $('#introOverlay');
+const introEnter = $('#introEnter');
+const introSkip = $('#introSkip');
+const replayIntro = $('#replayIntro');
+const introBackground = [$('.site-header'), $('main'), $('footer'), $('#backToTop'), replayIntro].filter(Boolean);
+let introEnableTimer = null;
+let introCloseTimer = null;
+
+function setIntroBackgroundInert(inert) {
+  introBackground.forEach((element) => { element.inert = inert; });
+}
+
+function rememberIntro() {
+  try { sessionStorage.setItem('jiwon-intro-seen', 'true'); } catch { /* Storage may be unavailable. */ }
+}
+
+function hasSeenIntro() {
+  try { return sessionStorage.getItem('jiwon-intro-seen') === 'true'; } catch { return false; }
+}
+
+function openIntro() {
+  if (!introOverlay) return;
+  clearTimeout(introEnableTimer);
+  clearTimeout(introCloseTimer);
+  introOverlay.hidden = false;
+  introOverlay.classList.remove('is-visible', 'is-closing');
+  introEnter.disabled = true;
+  document.body.classList.add('intro-open');
+  setIntroBackgroundInert(true);
+  void introOverlay.offsetWidth;
+  introOverlay.classList.add('is-visible');
+  introSkip.focus();
+  introEnableTimer = setTimeout(() => {
+    introEnter.disabled = false;
+    introEnter.focus();
+  }, motionReduced ? 0 : 2800);
+}
+
+function closeIntro() {
+  if (!introOverlay || introOverlay.hidden || introOverlay.classList.contains('is-closing')) return;
+  clearTimeout(introEnableTimer);
+  rememberIntro();
+  introOverlay.classList.add('is-closing');
+  introCloseTimer = setTimeout(() => {
+    introOverlay.hidden = true;
+    introOverlay.classList.remove('is-visible', 'is-closing');
+    document.body.classList.remove('intro-open');
+    setIntroBackgroundInert(false);
+    replayIntro.focus();
+  }, motionReduced ? 0 : 950);
+}
+
+if (introOverlay && introEnter && introSkip && replayIntro) {
+  introEnter.addEventListener('click', closeIntro);
+  introSkip.addEventListener('click', closeIntro);
+  replayIntro.addEventListener('click', openIntro);
+  introOverlay.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeIntro();
+    if (event.key === 'Enter' && !introEnter.disabled) closeIntro();
+  });
+  if (hasSeenIntro()) introOverlay.hidden = true;
+  else openIntro();
+}

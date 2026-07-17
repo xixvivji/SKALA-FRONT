@@ -11,11 +11,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="intro-overlay" id="introOverlay" role="dialog" aria-modal="true" aria-labelledby="introTitle" hidden>
+    <div class="intro-panel intro-panel-left" aria-hidden="true"></div><div class="intro-panel intro-panel-right" aria-hidden="true"></div>
+    <button class="intro-skip" id="introSkip" type="button">SKIP</button>
+    <div class="intro-content">
+      <span class="intro-code">HELLO, I'M JIWON.</span>
+      <h1 id="introTitle"><span>새로운 것을 배우고,</span><span>내 것으로 만드는 과정을</span><strong>좋아합니다.</strong></h1>
+      <p><span>LEARNING</span><i></i><span>BUILDING</span><i></i><span>GROWING</span></p>
+      <button class="intro-enter" id="introEnter" type="button" disabled><span>ENTER MY STORY</span><b>→</b></button>
+    </div>
+    <div class="intro-count" aria-hidden="true"><span>01</span><i></i><span>05</span></div>
+  </div>
   <header class="site-header">
     <a class="logo" href="#home"><span class="online-dot"></span>JIWON</a>
     <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
     <nav id="mainNav" aria-label="주요 메뉴">
-      <a href="#about">ABOUT</a><a href="#log">PROJECTS</a><a href="#github-activity">ACTIVITY</a><a href="#arcade">MINI ARCADE</a><a href="#guestbook">GUESTBOOK</a>
+      <a href="#about">ABOUT</a><a href="#log">PROJECTS</a><a href="#story">MY STORY</a><a href="#now-life">NOW</a><a href="#guestbook">GUESTBOOK</a>
     </nav>
   </header>
 
@@ -34,6 +45,7 @@
           <div><dt>STATUS</dt><dd>SKALA에서 학습 중</dd></div>
           <div><dt>INTEREST</dt><dd>Backend · Infra · AI</dd></div>
           <div><dt>STACK</dt><dd>Java · Spring · Docker · AWS</dd></div>
+          <div><dt>LOCAL TIME</dt><dd id="localTime">--:-- KST</dd></div>
         </dl>
         <a class="github-link" href="https://github.com/xixvivji" target="_blank" rel="noopener noreferrer"><span><small>GITHUB</small>github.com/xixvivji</span><b>↗</b></a>
       </aside>
@@ -62,31 +74,43 @@
       </div>
     </section>
 
-    <section class="calendar section" id="github-activity">
-      <div class="section-label"><span>03</span> GITHUB ACTIVITY</div>
-      <div class="calendar-layout activity-layout">
-        <div><h2>꾸준히 쌓아가는<br><em>개발 기록</em></h2><p>공개 저장소의 최근 커밋 활동을 GitHub에서 자동으로 가져옵니다.</p><div class="activity-stats"><div><span>THIS MONTH</span><b id="monthlyCommits">—</b><small>PUBLIC COMMITS</small></div><div><span>ACTIVE REPOS</span><b id="activeRepos">—</b><small>REPOSITORIES</small></div><div><span>PUBLIC REPOS</span><b id="publicRepos">—</b><small>REPOSITORIES</small></div><div><span>TOTAL STARS</span><b id="totalStars">—</b><small>RECEIVED</small></div></div><div class="language-stats"><div class="language-stats-head"><b>REPOS PER LANGUAGE</b><span>PUBLIC · NON-FORK</span></div><div id="languageBars" class="language-bars"><p>언어 정보를 불러오는 중입니다.</p></div></div><a class="github-profile-link" href="https://github.com/xixvivji" target="_blank" rel="noopener noreferrer">GitHub 프로필 전체 보기 ↗</a></div>
-        <div class="calendar-card activity-card">
-          <div class="activity-head"><div><span id="activityMonth">GITHUB</span><strong>PUBLIC COMMITS</strong></div><small>공개 저장소의 작성자 기준 커밋입니다.</small></div>
-          <div class="contribution-grid" id="contributionGrid" aria-label="이번 달 공개 커밋 활동"></div>
-          <div class="activity-legend"><span>LESS</span><i></i><i></i><i></i><i></i><span>MORE</span></div>
+    <section class="story-section section" id="story">
+      <div class="section-label"><span>03</span> MY STORY</div>
+      <div class="story-layout">
+        <div class="story-intro">
+          <span class="story-kicker">WHY I KEEP LEARNING</span>
+          <h2>모르는 것을 하나씩<br><em>알아가는 과정</em>을 좋아합니다.</h2>
+          <p>처음부터 개발이 익숙했던 것은 아닙니다. 궁금한 것을 직접 찾아보고, 만든 기능이 제대로 동작하는 순간을 경험하며 개발의 재미를 알아가고 있습니다.</p>
+          <blockquote>빠르게 답을 찾기보다, 왜 그렇게 동작하는지 이해하고 오래 기억하는 사람이 되고 싶습니다.</blockquote>
         </div>
+        <ol class="story-timeline" aria-label="개발 성장 과정">
+          <li><span>01</span><div><small>START</small><h3>궁금한 것을 직접 확인하기</h3><p>문득 생긴 궁금증을 그냥 넘기기보다 자료를 찾아보고 직접 시도하며 답을 알아갑니다.</p></div></li>
+          <li><span>02</span><div><small>EXPERIENCE</small><h3>프로젝트로 부딪혀 보기</h3><p>백엔드와 인프라를 담당하며 기능 구현뿐 아니라 연결과 배포 과정의 문제를 해결했습니다.</p></div></li>
+          <li><span>03</span><div><small>NOW</small><h3>SKALA에서 함께 배우기</h3><p>새로운 기술을 배우고 동료와 경험을 나누며 혼자보다 함께 성장하는 방법을 익히고 있습니다.</p></div></li>
+          <li><span>04</span><div><small>NEXT</small><h3>꾸준히 운영되는 서비스 만들기</h3><p>배운 내용을 실제 서비스에 적용하고, 안정적으로 개선해 나가는 개발자가 되고 싶습니다.</p></div></li>
+        </ol>
       </div>
     </section>
 
-    <section class="arcade section" id="arcade">
-      <div class="section-label"><span>04</span> MINI ARCADE</div>
-      <div class="arcade-head"><div><h2>코딩 타자 챌린지</h2><p>코드를 정확하고 빠르게 입력해 보세요.</p></div><div class="score-box"><span>MY BEST</span><b id="bestScore">000</b></div></div>
-      <div class="game-card">
-        <div class="game-copy"><span class="category lime">TYPING GAME</span><h3>Hello, World! 챌린지</h3><p>개발자라면 한 번쯤 본 유명한 문장이 나옵니다.<br>수정은 감점 없이, 완성까지 걸린 시간으로 타수를 계산합니다.</p><label class="game-identity"><span>ID</span><input id="gameUserId" maxlength="16" placeholder="익명 아이디"></label><label class="game-identity"><span>PASSWORD</span><input id="gamePassword" type="password" maxlength="32" placeholder="4자 이상"></label><button class="primary-btn" id="startGame" type="button">NEW CHALLENGE <span>▶</span></button><div class="game-status"><span>TIME <b id="gameTime">0.00</b>s</span><span>타수 <b id="gameScore">000</b></span></div></div>
-        <div class="typing-area"><pre id="typingPrompt">START GAME을 눌러 시작하세요.</pre><textarea id="typingInput" aria-label="코드 입력 영역" placeholder="여기에 코드를 입력하세요" disabled spellcheck="false"></textarea><div class="leaderboard"><div class="leaderboard-head"><b>전체 랭킹</b><button id="refreshRanking" type="button">새로고침</button></div><ol id="rankingList"><li class="loading-row">랭킹을 불러오는 중...</li></ol></div></div>
+    <section class="now-life section" id="now-life">
+      <div class="section-label"><span>04</span> NOW &amp; INTERESTS</div>
+      <div class="now-heading"><div><span class="story-kicker">A LITTLE MORE ABOUT ME</span><h2>요즘의 저를<br><em>채우는 것들</em></h2></div><p>개발을 공부하는 시간과 평범한 일상 모두 지금의 저를 만듭니다. 아직 구체적인 이야기는 더 채워갈 예정입니다.</p></div>
+      <div class="now-grid">
+        <article class="now-card featured"><span>LEARNING</span><h3>Java · Spring · Cloud · AI</h3><p>서비스가 만들어지고 운영되는 전체 흐름을 이해하기 위해 백엔드와 인프라를 중심으로 공부하고 있습니다.</p><div class="mini-tags"><i>BACKEND</i><i>INFRA</i><i>AI</i></div></article>
+        <article class="now-card"><span>PERSONALITY</span><h3>차분하게, 끝까지</h3><p>처음에는 조금 낯을 가리지만 맡은 일은 책임지고 마무리하려고 합니다.</p></article>
+        <article class="now-card"><span>OFF THE CLOCK</span><h3>산책과 생각 정리</h3><p>천천히 걸으며 머릿속을 정리하고, 문득 궁금해진 것은 직접 찾아보는 것을 좋아합니다.</p></article>
+        <article class="now-card"><span>NEXT GOAL</span><h3>직접 만들고 운영하기</h3><p>배운 기술로 서비스를 만들고 배포한 뒤, 사용자의 반응을 보며 꾸준히 개선해 보고 싶습니다.</p></article>
+        <article class="now-card connect"><span>LET'S CONNECT</span><h3>같이 이야기해요</h3><p>같은 길을 준비하고 있다면 공부하며 막힌 부분이나 요즘의 고민을 편하게 나누고 싶습니다.</p><a href="#guestbook">방명록에 이야기 남기기 ↗</a></article>
       </div>
     </section>
 
     <section class="guestbook section" id="guestbook">
       <div class="section-label"><span>05</span> GUESTBOOK</div>
       <div class="guest-layout"><div><h2>왔다 간 흔적을<br><em>남겨주세요.</em></h2><p>짧은 인사도, 오늘의 TMI도 좋아요.<br>당신의 메시지가 이 공간을 채웁니다.</p><div class="visitor-count"><span>MY VISITS · THIS DEVICE</span><b><i id="visitorCount">1</i></b></div></div>
-        <div><form id="guestForm" class="guest-form"><div class="form-row"><label><span>ID</span><input id="guestName" minlength="2" maxlength="16" pattern="[A-Za-z0-9가-힣_-]{2,16}" title="2~16자의 문자, 숫자, _, -만 사용할 수 있습니다." autocomplete="username" placeholder="익명 아이디" required></label><label><span>PASSWORD</span><input id="guestPassword" type="password" minlength="4" maxlength="32" autocomplete="current-password" placeholder="글 관리용 비밀번호" required></label></div><label><span>MESSAGE</span><textarea id="guestMessage" minlength="1" maxlength="120" placeholder="메시지를 남겨주세요." required></textarea></label><p class="form-help">처음 사용하는 아이디는 자동으로 등록됩니다. 비밀번호는 암호화되어 저장됩니다.</p><button class="primary-btn" type="submit">메시지 남기기 <span>↗</span></button></form></div>
+        <div>
+          <aside class="conversation-starter" aria-labelledby="questionLabel"><div><span id="questionLabel">TODAY'S QUESTION</span><p id="dailyQuestion" aria-live="polite">요즘 가장 재미있게 배우는 기술은 무엇인가요?</p></div><button id="newQuestion" type="button" aria-label="새로운 대화 질문 보기">다른 질문 ↻</button></aside>
+          <form id="guestForm" class="guest-form"><div class="form-row"><label><span>ID</span><input id="guestName" minlength="2" maxlength="16" pattern="[A-Za-z0-9가-힣_-]{2,16}" title="2~16자의 문자, 숫자, _, -만 사용할 수 있습니다." autocomplete="username" placeholder="익명 아이디" required></label><label><span>PASSWORD</span><input id="guestPassword" type="password" minlength="4" maxlength="32" autocomplete="current-password" placeholder="글 관리용 비밀번호" required></label></div><label><span>MESSAGE</span><textarea id="guestMessage" minlength="1" maxlength="120" placeholder="메시지를 남겨주세요." required></textarea></label><p class="form-help">처음 사용하는 아이디는 자동으로 등록됩니다. 비밀번호는 암호화되어 저장됩니다.</p><button class="primary-btn" type="submit">메시지 남기기 <span>↗</span></button></form>
+        </div>
       </div>
       <div class="guestbook-list"><div class="guestbook-list-head"><h3>방명록</h3><span>한 페이지에 6개씩 표시됩니다.</span></div><div class="messages" id="messages" aria-live="polite"></div><nav class="guest-pagination" id="guestPagination" aria-label="방명록 페이지"></nav></div>
     </section>
@@ -108,6 +132,7 @@
     </div>
   </div>
   <button class="back-to-top" id="backToTop" type="button" aria-label="맨 위로 이동" title="맨 위로 이동">↑</button>
+  <button class="replay-intro" id="replayIntro" type="button">REPLAY INTRO</button>
   <div class="toast" id="toast" role="status"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js"></script>
