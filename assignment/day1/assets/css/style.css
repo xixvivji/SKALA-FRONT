@@ -297,6 +297,63 @@ td { font-size: .94rem; }
 .todo-empty[hidden] { display: none; }
 .todo-empty strong { font-size: 1.15rem; }
 .todo-empty span { margin-top: 5px; color: var(--muted); }
+
+/* Calendar travel planner */
+.trip-list-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.trip-list-heading h2 { margin: 0; font-size: 1.45rem; letter-spacing: -.04em; }
+.trip-list { display: grid; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
+.trip-list button { width: 100%; padding: 14px 15px; border: 1px solid var(--line); border-radius: var(--radius-sm); cursor: pointer; color: var(--ink); background: var(--input-bg); text-align: left; transition: border-color .2s ease, background .2s ease, transform .2s ease; }
+.trip-list button:hover { border-color: var(--primary); transform: translateX(3px); }
+.trip-list button.is-active { border-color: var(--primary); background: var(--surface-soft); box-shadow: inset 4px 0 0 var(--primary); }
+.trip-list strong, .trip-list span { display: block; }
+.trip-list span { margin-top: 2px; color: var(--muted); font-size: .8rem; }
+.planner-quote { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line); }
+.planner-quote blockquote { font-size: 1.05rem; }
+.trip-workspace { display: grid; gap: 24px; }
+.trip-workspace[hidden] { display: none; }
+.planner-empty { display: grid; min-height: 480px; place-items: center; align-content: center; padding: 48px; border: 1px dashed var(--line); border-radius: var(--radius-lg); background: var(--surface); text-align: center; }
+.planner-empty[hidden] { display: none; }
+.planner-empty > span { font-size: 3rem; }
+.planner-empty h2 { margin: 14px 0 4px; font-size: 1.7rem; }
+.planner-empty p { margin: 0 0 24px; color: var(--muted); }
+.trip-overview { display: flex; align-items: center; justify-content: space-between; gap: 28px; padding: 28px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow); }
+.trip-overview h2 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.4rem); letter-spacing: -.05em; }
+.trip-period { margin: 7px 0 0; color: var(--muted); }
+.trip-overview-actions { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 8px; }
+.trip-overview-actions .button { min-height: 42px; padding-inline: 15px; font-size: .82rem; }
+.trip-dday { padding: 9px 13px; border-radius: 999px; color: var(--primary-dark); background: var(--surface-soft); font-size: .85rem; }
+.text-button { padding: 9px 10px; border: 0; cursor: pointer; color: var(--muted); background: transparent; font-size: .8rem; font-weight: 800; }
+.text-button.danger:hover { color: var(--danger-text); }
+.calendar-card, .day-planner { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow); }
+.calendar-toolbar { display: flex; align-items: center; justify-content: center; gap: 20px; padding: 22px 26px; border-bottom: 1px solid var(--line); }
+.calendar-toolbar h2 { min-width: 150px; margin: 0; text-align: center; font-size: 1.35rem; }
+.calendar-weekdays, .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
+.calendar-weekdays { padding: 14px 18px 6px; color: var(--muted); text-align: center; font-size: .76rem; font-weight: 800; }
+.calendar-grid { gap: 5px; padding: 8px 18px 22px; }
+.calendar-grid button, .calendar-blank { min-height: 78px; }
+.calendar-grid button { position: relative; display: flex; align-items: flex-start; justify-content: space-between; flex-direction: column; padding: 9px; border: 1px solid transparent; border-radius: 13px; cursor: pointer; color: var(--ink); background: transparent; font-weight: 800; transition: border-color .2s ease, background .2s ease, transform .2s ease; }
+.calendar-grid button:hover:not(:disabled) { border-color: var(--primary); background: var(--surface-soft); transform: translateY(-2px); }
+.calendar-grid button:disabled { cursor: not-allowed; color: var(--muted); opacity: .3; }
+.calendar-grid button.is-selected { color: var(--on-image); border-color: var(--primary); background: var(--primary); }
+.calendar-grid button.is-today > span:first-child { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.calendar-markers { display: flex; gap: 4px; }
+.calendar-markers i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.calendar-markers .preparation-dot { background: var(--primary-dark); }
+.calendar-grid button.is-selected .calendar-markers i { background: var(--on-image); }
+.day-planner-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; padding: 26px 26px 0; }
+.day-planner-heading h2 { margin: 0; font-size: 1.45rem; letter-spacing: -.04em; }
+.day-planner-heading > p { margin: 0; color: var(--muted); font-size: .86rem; }
+.todo-form select { width: 100%; min-height: 52px; padding: 0 14px; border: 1px solid var(--line); border-radius: var(--radius-sm); color: var(--ink); background: var(--input-bg); }
+.todo-form .form-group[hidden] { display: none; }
+.item-kind { width: max-content; margin-bottom: 3px; padding: 2px 8px; border-radius: 999px; color: var(--primary-dark); background: var(--surface-soft); font-size: .72rem; font-weight: 850; }
+.item-kind.preparation { color: var(--inverted-text); background: var(--inverted-bg); }
+.trip-dialog { width: min(560px, calc(100% - 30px)); padding: 0; border: 0; border-radius: var(--radius-lg); color: var(--ink); background: transparent; box-shadow: var(--shadow); }
+.trip-dialog::backdrop { background: var(--image-overlay); backdrop-filter: blur(5px); }
+.trip-dialog-card { display: grid; gap: 19px; padding: clamp(24px, 5vw, 38px); background: var(--surface); }
+.dialog-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.dialog-heading h2 { margin: 0; font-size: 1.7rem; letter-spacing: -.04em; }
+.trip-dialog input, .trip-dialog select { width: 100%; min-height: 52px; padding: 0 14px; border: 1px solid var(--line); border-radius: var(--radius-sm); color: var(--ink); background: var(--input-bg); }
+.dialog-date-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
 
 .auth-layout { max-width: 560px; padding-bottom: 110px; }
@@ -331,6 +388,7 @@ body.dark input[type="date"], body.dark input[type="time"] { color-scheme: dark;
   .food-article img { min-height: 360px; max-height: 480px; }
   .planner-layout { grid-template-columns: 1fr; }
   .planner-side { position: static; }
+  .trip-list { grid-template-columns: repeat(2, 1fr); }
   .trip-form { grid-template-columns: 1fr 1fr; }
   .trip-title-field { grid-column: 1 / -1; }
 }
@@ -375,6 +433,14 @@ body.dark input[type="date"], body.dark input[type="time"] { color-scheme: dark;
   .todo-form-actions .button { width: 100%; }
   .todo-toolbar { align-items: flex-start; flex-direction: column; }
   .schedule-item { align-items: flex-start; }
+  .trip-list { grid-template-columns: 1fr; }
+  .trip-overview, .day-planner-heading { align-items: flex-start; flex-direction: column; }
+  .trip-overview-actions { justify-content: flex-start; }
+  .calendar-weekdays { padding-inline: 8px; }
+  .calendar-grid { gap: 2px; padding-inline: 8px; }
+  .calendar-grid button, .calendar-blank { min-height: 58px; }
+  .calendar-grid button { padding: 6px; border-radius: 9px; font-size: .82rem; }
+  .dialog-date-grid { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

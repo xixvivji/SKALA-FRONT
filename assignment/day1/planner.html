@@ -11,46 +11,54 @@
     <section class="page-hero container"><p class="eyebrow">Travel Planner</p><h1 class="display-title">설레는 여행을<br>하나씩 준비하세요</h1><p class="section-copy">여행지를 고르고 해야 할 일을 기록하면 이 브라우저에 안전하게 저장됩니다.</p></section>
     <section class="container planner-layout">
       <aside class="planner-side">
-        <p class="eyebrow">Today's Inspiration</p>
-        <blockquote id="daily-quote">오늘의 여행 문구를 불러오는 중입니다.</blockquote>
-        <cite id="quote-author">여행의 발견</cite>
-        <label for="destination-select">계획할 여행지</label>
-        <select id="destination-select"></select>
-        <a id="destination-link" class="button secondary" href="destination.html">여행지 정보 보기 →</a>
+        <p class="eyebrow">My Trips</p>
+        <div class="trip-list-heading"><h2 id="plan-owner">나의 여행</h2><button id="new-trip" class="icon-button" type="button" aria-label="새 여행 만들기">＋</button></div>
+        <ul id="trip-list" class="trip-list" aria-label="저장된 여행 목록"></ul>
+        <div class="planner-quote"><p class="eyebrow">Today's Inspiration</p><blockquote id="daily-quote">오늘의 여행 문구를 불러오는 중입니다.</blockquote><cite id="quote-author">여행의 발견</cite></div>
       </aside>
+
       <div class="planner-main">
-        <section class="trip-settings" aria-labelledby="trip-settings-title">
-          <div class="trip-settings-heading"><div><p class="eyebrow">Trip Schedule</p><h2 id="trip-settings-title">여행 기본 정보</h2></div><p id="plan-owner"></p></div>
-          <form id="trip-form" class="trip-form">
-            <div class="form-group trip-title-field"><label for="trip-title">여행 이름</label><input id="trip-title" type="text" maxlength="50" required placeholder="예: 여름 제주 여행"></div>
-            <div class="form-group"><label for="trip-start">시작일</label><input id="trip-start" type="date" required></div>
-            <div class="form-group"><label for="trip-end">종료일</label><input id="trip-end" type="date" required></div>
-            <button class="button" type="submit">여행 정보 저장</button>
-          </form>
-        </section>
-        <section class="todo-app" aria-labelledby="schedule-title">
-        <div class="todo-title"><div><p class="eyebrow">Daily Schedule</p><h2 id="schedule-title">일정 및 준비 항목</h2></div></div>
-        <form id="todo-form" class="todo-form">
-          <div class="form-group todo-text-field"><label for="todo-input">일정 내용</label><input id="todo-input" type="text" maxlength="80" autocomplete="off" required placeholder="예: 렌터카 찾기"></div>
-          <div class="form-group"><label for="todo-date">날짜</label><input id="todo-date" type="date" required></div>
-          <div class="form-group"><label for="todo-time">시간</label><input id="todo-time" type="time"></div>
-          <div class="todo-form-actions"><button id="todo-submit" class="button" type="submit">일정 추가</button><button id="todo-cancel" class="button secondary" type="button" hidden>수정 취소</button></div>
-        </form>
-        <div class="todo-toolbar">
-          <div class="todo-filters" aria-label="할 일 필터">
-            <button class="is-active" type="button" data-filter="all">전체</button>
-            <button type="button" data-filter="active">진행 중</button>
-            <button type="button" data-filter="done">완료</button>
-          </div>
-          <p id="todo-summary">전체 0개 · 완료 0개</p>
+        <section id="planner-empty" class="planner-empty"><span aria-hidden="true">🗓️</span><h2>첫 여행을 만들어 보세요</h2><p>여행 기간을 정하면 날짜를 눌러 일정을 채울 수 있습니다.</p><button class="button" type="button" data-create-trip>새 여행 만들기</button></section>
+
+        <div id="trip-workspace" class="trip-workspace" hidden>
+          <section class="trip-overview" aria-labelledby="active-trip-title">
+            <div><p id="trip-location" class="eyebrow"></p><h2 id="active-trip-title"></h2><p id="trip-period" class="trip-period"></p></div>
+            <div class="trip-overview-actions"><strong id="trip-dday" class="trip-dday"></strong><a id="destination-link" class="button secondary" href="destination.html">여행지 보기</a><button id="edit-trip" class="button secondary" type="button">기본정보 수정</button><button id="delete-trip" class="text-button danger" type="button">여행 삭제</button></div>
+          </section>
+
+          <section class="calendar-card" aria-labelledby="calendar-title">
+            <div class="calendar-toolbar"><button id="calendar-prev" class="icon-button" type="button" aria-label="이전 달">←</button><h2 id="calendar-title" aria-live="polite"></h2><button id="calendar-next" class="icon-button" type="button" aria-label="다음 달">→</button></div>
+            <div class="calendar-weekdays" aria-hidden="true"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
+            <div id="calendar-grid" class="calendar-grid"></div>
+          </section>
+
+          <section class="day-planner" aria-labelledby="selected-date-title">
+            <div class="day-planner-heading"><div><p class="eyebrow">Selected Day</p><h2 id="selected-date-title">날짜를 선택하세요</h2></div><p id="todo-summary">전체 0개 · 완료 0개</p></div>
+            <form id="todo-form" class="todo-form">
+              <div class="form-group"><label for="todo-kind">항목 유형</label><select id="todo-kind"><option value="schedule">시간 일정</option><option value="preparation">준비 항목</option></select></div>
+              <div class="form-group todo-text-field"><label for="todo-input">내용</label><input id="todo-input" type="text" maxlength="80" autocomplete="off" required placeholder="예: 렌터카 수령 또는 여권 챙기기"></div>
+              <div id="todo-time-field" class="form-group"><label for="todo-time">시간</label><input id="todo-time" type="time"></div>
+              <div class="todo-form-actions"><button id="todo-submit" class="button" type="submit">항목 추가</button><button id="todo-cancel" class="button secondary" type="button" hidden>수정 취소</button></div>
+            </form>
+            <div class="todo-toolbar"><div class="todo-filters" aria-label="항목 필터"><button class="is-active" type="button" data-filter="all">전체</button><button type="button" data-filter="schedule">일정</button><button type="button" data-filter="preparation">준비</button><button type="button" data-filter="done">완료</button></div></div>
+            <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
+            <div id="todo-empty" class="todo-empty"><strong>이 날짜에는 아직 계획이 없습니다</strong><span>시간 일정이나 준비 항목을 추가해 보세요.</span></div>
+          </section>
         </div>
-        <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
-        <div id="todo-empty" class="todo-empty"><strong>준비할 항목이 없습니다</strong><span>위 입력창에서 첫 번째 계획을 추가해 보세요.</span></div>
-        </section>
       </div>
     </section>
+
+    <dialog id="trip-dialog" class="trip-dialog">
+      <form id="trip-form" class="trip-dialog-card">
+        <div class="dialog-heading"><div><p class="eyebrow">Trip Information</p><h2 id="trip-dialog-title">새 여행 만들기</h2></div><button id="close-trip-dialog" class="icon-button" type="button" aria-label="닫기">×</button></div>
+        <div class="form-group"><label for="trip-title">여행 이름</label><input id="trip-title" type="text" maxlength="50" required placeholder="예: 여름 제주 여행"></div>
+        <div class="form-group"><label for="destination-select">여행지</label><select id="destination-select" required></select></div>
+        <div class="dialog-date-grid"><div class="form-group"><label for="trip-start">시작일</label><input id="trip-start" type="date" required></div><div class="form-group"><label for="trip-end">종료일</label><input id="trip-end" type="date" required></div></div>
+        <div class="form-actions"><button id="cancel-trip" class="button secondary" type="button">취소</button><button class="button" type="submit">저장하기</button></div>
+      </form>
+    </dialog>
   </main>
   <footer class="site-footer"><div class="container footer-wrap"><span>© <span data-year></span> 여행의 발견 · 김지원</span><a class="back-top" href="#top">↑ 맨 위로</a></div></footer>
-  <script type="module" src="assets/js/core/common.js"></script><script type="module" src="assets/js/pages/app.js?v=2"></script><script type="module" src="assets/js/components/quote.js"></script>
+  <script type="module" src="assets/js/core/common.js"></script><script type="module" src="assets/js/pages/app.js?v=3"></script><script type="module" src="assets/js/components/quote.js"></script>
 </body>
 </html>

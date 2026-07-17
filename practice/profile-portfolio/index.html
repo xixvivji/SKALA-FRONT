@@ -3,199 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="웹 개발을 공부하는 김지원의 자기소개 페이지입니다.">
-  <title>김지원 | My Profile</title>
+  <meta name="description" content="백엔드와 AI를 공부하는 김지원의 개인 아케이드 블로그">
+  <title>JIWON — Personal Arcade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="site-header">
-    <a class="logo" href="#home">김지원<span></span></a>
-
-    <nav class="navigation" aria-label="주요 메뉴">
-      <a class="active" href="index.html">소개</a>
-      <a href="#skills">프로젝트</a>
-      <a href="#strengths">공부 기록</a>
-      <a href="#profile">연락처</a>
+    <a class="logo" href="#home"><span class="online-dot"></span>JIWON</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
+    <nav id="mainNav" aria-label="주요 메뉴">
+      <a href="#about">ABOUT</a><a href="#log">PROJECTS</a><a href="#github-activity">ACTIVITY</a><a href="#arcade">MINI ARCADE</a><a href="#guestbook">GUESTBOOK</a>
     </nav>
   </header>
 
-  <aside class="section-sidebar" aria-label="자기소개 바로가기">
-    <span class="sidebar-title">PROFILE</span>
-    <nav>
-      <a href="#personality"><span>01</span>성격</a>
-      <a href="#profile"><span>02</span>정보</a>
-      <a href="#skills"><span>03</span>기술</a>
-      <a href="#strengths"><span>04</span>장점</a>
-      <a href="#interests"><span>05</span>관심사</a>
-      <a href="#goal"><span>06</span>목표</a>
-    </nav>
-  </aside>
-
   <main>
-    <section class="hero section" id="home">
-      <div class="hero-content">
-        <p class="eyebrow">안녕하세요, 김지원입니다</p>
-        <h1>
-          #todo 2 내용채울 예정
-        </h1>
-        <p class="hero-description">
-        
-          안녕하세요. SKALA에서 공부하고 있는 김지원입니다.
-        </p>
-        <a class="scroll-button" href="#personality">저에 대해 알아보기 ↓</a>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="kicker">김지원 · BACKEND / INFRA</p>
+        <h1>새로운 것을 배우고,<br><span>내 것으로 만드는 과정을 좋아합니다.</span></h1>
+        <p class="hero-intro">안녕하세요, 김지원입니다. 안정적인 서비스의 기반을 고민하며 백엔드와 인프라를 공부하고 있습니다.</p>
+        <div class="hero-actions"><a class="primary-btn" href="#about">더 알아보기 <span>↓</span></a><a class="secondary-btn" href="#guestbook">흔적 남기기 <span>↗</span></a></div>
       </div>
+      <aside class="player-card" aria-label="김지원 프로필 카드">
+        <div class="card-top"><span>PROFILE</span><i class="online-dot"></i></div>
+        <div class="profile-card-head"><span class="profile-initial" aria-label="개발자 로봇 캐릭터">🤖</span><div><strong>김지원</strong><span>Backend / Infra</span></div></div>
+        <dl class="profile-summary">
+          <div><dt>STATUS</dt><dd>SKALA에서 학습 중</dd></div>
+          <div><dt>INTEREST</dt><dd>Backend · Infra · AI</dd></div>
+          <div><dt>STACK</dt><dd>Java · Spring · Docker · AWS</dd></div>
+        </dl>
+        <a class="github-link" href="https://github.com/xixvivji" target="_blank" rel="noopener noreferrer"><span><small>GITHUB</small>github.com/xixvivji</span><b>↗</b></a>
+      </aside>
+      <div class="scroll-cue">SCROLL TO EXPLORE <span>↓</span></div>
+    </section>
 
-      <div class="hero-visual" aria-hidden="true">
-        <div class="profile-phone">
-          <div class="phone-top"><span></span><span></span></div>
-          <div class="avatar">
-            <img src="profile.jpg" alt="김지원 프로필 사진">
-          </div>
-          <strong>김지원</strong>
-        
-          
-          <p>backend engineer</p>
-          <div class="mini-info"><span>머채우지</span><b>머채우지</b></div>
-          <div class="mini-info"><span>머채우지2</span><b>머채우지</b></div>
-          <div>
-            <a class="mini-button" href="#profile">내 프로필 보기</a>
-          </div>
+    <section class="about section" id="about">
+      <div class="section-label"><span>01</span> ABOUT</div>
+      <div class="about-heading"><h2>차분하게 배우고,<br><em>끝까지 해냅니다.</em></h2><p>새로운 것을 이해하고 직접 적용해 보며, 배운 내용을 제 것으로 만들어 가는 과정을 좋아합니다.</p></div>
+      <div class="bento-grid">
+        <article class="bento bio"><span class="corner">ABOUT ME</span><h3>처음에는 조금 낯을 가리지만,<br>시간이 지나면 자연스럽게 어울립니다.</h3><p>대체로 무던하고 다른 사람에게 피해를 주지 않으려고 합니다. 맡은 일은 끝까지 책임지고, 궁금한 것은 원리를 이해할 때까지 차근차근 살펴보는 편입니다.</p><div class="tags"><span>INTP</span><span>낯가림</span><span>무던함</span><span>책임감</span></div></article>
+        <article class="bento about-profile"><span class="corner">PROFILE</span><dl><div><dt>MBTI</dt><dd>INTP</dd></div><div><dt>NOW</dt><dd>SKALA에서 학습 중</dd></div><div><dt>INTEREST</dt><dd>Backend · Infra · AI</dd></div></dl></article>
+        <article class="bento now"><span class="corner">I CAN HELP</span><div class="disc">{ }</div><h3>Java Backend × Infra</h3><p>다수의 프로젝트에서 Java 백엔드 개발과 인프라 구성을 담당했습니다. 제가 경험한 부분이라면 함께 고민하고 도움을 나누고 싶습니다.</p></article>
+        <article class="bento values"><span class="corner">OFF THE CLOCK</span><ul><li><b>01</b><span>산책하기</span><i>천천히 걸으며 생각을 정리합니다.</i></li><li><b>02</b><span>궁금한 것 찾아보기</span><i>문득 궁금해진 것은 직접 찾아보며 알아갑니다.</i></li></ul></article>
+        <article class="bento location"><span class="corner">STUDY TOGETHER</span><div class="radar"><i></i></div><h3>같이 공부해요</h3><p>아직 많이 부족하지만 함께 고민하며 배우고 싶습니다. Java와 Spring을 학습 할 계획이 있으시면 <a href="#guestbook"><strong>편하게 말 걸어주세요 ↗</strong></a></p></article>
+      </div>
+    </section>
+
+    <section class="log section" id="log">
+      <div class="section-label"><span>02</span> PROJECT EXPERIENCE</div>
+      <div class="section-title-row"><h2>프로젝트 경험</h2><a href="https://github.com/xixvivji?tab=repositories" target="_blank" rel="noopener noreferrer">ALL REPOSITORIES ↗</a></div>
+      <div class="log-list">
+        <a class="project-trigger" href="https://github.com/xixvivji/mung-shall" data-project="mung-shall"><article><div class="log-date"><b>01</b><span>BACKEND<br>INFRA</span></div><div><span class="category">PROJECT</span><h3>Mung-Shall · AI 유기견 입양 지원 플랫폼</h3><p>추천·매칭 백엔드와 배포 인프라를 담당하고, OpenVidu 연결과 운영 안정화 문제를 해결했습니다.</p></div><span class="arrow">＋</span></article></a>
+        <a class="project-trigger" href="https://github.com/xixvivji/z-invest" data-project="z-invest"><article><div class="log-date"><b>02</b><span>SPRING<br>FINTECH</span></div><div><span class="category lime">PROJECT</span><h3>Z멋대로 · AI 투자 플랫폼</h3><p>KIS 연동과 주식 매수·매도, 스케줄링, DB, FCM 푸시 알림 등 핵심 백엔드를 구현했습니다.</p></div><span class="arrow">＋</span></article></a>
+        <a class="project-trigger" href="https://github.com/xixvivji/C102_LUMEN_PROJECT" data-project="lumen"><article><div class="log-date"><b>03</b><span>AI<br>INFRA</span></div><div><span class="category pink">PROJECT</span><h3>LUMEN · AI 스마트 보행 지원 서비스</h3><p>시각장애인의 안전한 이동을 위해 AI 환경 인식, 음성 경로 안내와 위험 지도 기능을 하나의 서비스로 구성했습니다.</p></div><span class="arrow">＋</span></article></a>
+      </div>
+    </section>
+
+    <section class="calendar section" id="github-activity">
+      <div class="section-label"><span>03</span> GITHUB ACTIVITY</div>
+      <div class="calendar-layout activity-layout">
+        <div><h2>꾸준히 쌓아가는<br><em>개발 기록</em></h2><p>공개 저장소의 최근 커밋 활동을 GitHub에서 자동으로 가져옵니다.</p><div class="activity-stats"><div><span>THIS MONTH</span><b id="monthlyCommits">—</b><small>PUBLIC COMMITS</small></div><div><span>ACTIVE REPOS</span><b id="activeRepos">—</b><small>REPOSITORIES</small></div><div><span>PUBLIC REPOS</span><b id="publicRepos">—</b><small>REPOSITORIES</small></div><div><span>TOTAL STARS</span><b id="totalStars">—</b><small>RECEIVED</small></div></div><div class="language-stats"><div class="language-stats-head"><b>REPOS PER LANGUAGE</b><span>PUBLIC · NON-FORK</span></div><div id="languageBars" class="language-bars"><p>언어 정보를 불러오는 중입니다.</p></div></div><a class="github-profile-link" href="https://github.com/xixvivji" target="_blank" rel="noopener noreferrer">GitHub 프로필 전체 보기 ↗</a></div>
+        <div class="calendar-card activity-card">
+          <div class="activity-head"><div><span id="activityMonth">GITHUB</span><strong>PUBLIC COMMITS</strong></div><small>공개 저장소의 작성자 기준 커밋입니다.</small></div>
+          <div class="contribution-grid" id="contributionGrid" aria-label="이번 달 공개 커밋 활동"></div>
+          <div class="activity-legend"><span>LESS</span><i></i><i></i><i></i><i></i><span>MORE</span></div>
         </div>
       </div>
     </section>
 
-    <section class="section personality" id="personality">
-      <div class="section-heading">
-       
-        <p class="eyebrow">저의 성격</p>
-        <h2>저의 성격을 간단히 소개합니다.</h2>
-      </div>
-
-      <div class="statement-card">
-        <p class="large-text">
-          무던한 성격이고,<br>
-          시작한 일은 <strong>끝까지 책임감 있게</strong> 마무리합니다.
-        </p>
-        <p>
-          새로운 것을 배우고 직접 결과물로 만들어 보는 것을 좋아합니다.
-         </p>
+    <section class="arcade section" id="arcade">
+      <div class="section-label"><span>04</span> MINI ARCADE</div>
+      <div class="arcade-head"><div><h2>코딩 타자 챌린지</h2><p>코드를 정확하고 빠르게 입력해 보세요.</p></div><div class="score-box"><span>MY BEST</span><b id="bestScore">000</b></div></div>
+      <div class="game-card">
+        <div class="game-copy"><span class="category lime">TYPING GAME</span><h3>Hello, World! 챌린지</h3><p>개발자라면 한 번쯤 본 유명한 문장이 나옵니다.<br>수정은 감점 없이, 완성까지 걸린 시간으로 타수를 계산합니다.</p><label class="game-identity"><span>ID</span><input id="gameUserId" maxlength="16" placeholder="익명 아이디"></label><label class="game-identity"><span>PASSWORD</span><input id="gamePassword" type="password" maxlength="32" placeholder="4자 이상"></label><button class="primary-btn" id="startGame" type="button">NEW CHALLENGE <span>▶</span></button><div class="game-status"><span>TIME <b id="gameTime">0.00</b>s</span><span>타수 <b id="gameScore">000</b></span></div></div>
+        <div class="typing-area"><pre id="typingPrompt">START GAME을 눌러 시작하세요.</pre><textarea id="typingInput" aria-label="코드 입력 영역" placeholder="여기에 코드를 입력하세요" disabled spellcheck="false"></textarea><div class="leaderboard"><div class="leaderboard-head"><b>전체 랭킹</b><button id="refreshRanking" type="button">새로고침</button></div><ol id="rankingList"><li class="loading-row">랭킹을 불러오는 중...</li></ol></div></div>
       </div>
     </section>
 
-    <section class="section profile" id="profile">
-      <div class="section-heading">
-        <p class="eyebrow">기본 정보</p>
-        <h2>간단히 소개할게요.</h2>
+    <section class="guestbook section" id="guestbook">
+      <div class="section-label"><span>05</span> GUESTBOOK</div>
+      <div class="guest-layout"><div><h2>왔다 간 흔적을<br><em>남겨주세요.</em></h2><p>짧은 인사도, 오늘의 TMI도 좋아요.<br>당신의 메시지가 이 공간을 채웁니다.</p><div class="visitor-count"><span>MY VISITS · THIS DEVICE</span><b><i id="visitorCount">1</i></b></div></div>
+        <div><form id="guestForm" class="guest-form"><div class="form-row"><label><span>ID</span><input id="guestName" minlength="2" maxlength="16" pattern="[A-Za-z0-9가-힣_-]{2,16}" title="2~16자의 문자, 숫자, _, -만 사용할 수 있습니다." autocomplete="username" placeholder="익명 아이디" required></label><label><span>PASSWORD</span><input id="guestPassword" type="password" minlength="4" maxlength="32" autocomplete="current-password" placeholder="글 관리용 비밀번호" required></label></div><label><span>MESSAGE</span><textarea id="guestMessage" minlength="1" maxlength="120" placeholder="메시지를 남겨주세요." required></textarea></label><p class="form-help">처음 사용하는 아이디는 자동으로 등록됩니다. 비밀번호는 암호화되어 저장됩니다.</p><button class="primary-btn" type="submit">메시지 남기기 <span>↗</span></button></form></div>
       </div>
-
-      <dl class="profile-list">
-        <div class="profile-item">
-          <dt>이름</dt>
-          <dd>김지원</dd>
-        </div>
-        <div class="profile-item">
-          <dt>거주 지역</dt>
-          <dd>우산동</dd>
-        </div>
-        <div class="profile-item">
-          <dt>GitHub</dt>
-          <dd><a href="https://github.com/xixvivji" title="GitHub 주소를 입력해 주세요" target="_blank">github.com/xixvivji ↗</a></dd>
-        </div>
-        <div class="profile-item">
-          <dt>관심 분야</dt>
-          <dd>backend · infra/devOps · AI</dd>
-        </div>
-      </dl>
-    </section>
-
-    <section class="section skills" id="skills">
-      <div class="section-heading">
-        <p class="eyebrow">기술과 학습</p>
-        <h2>지금 배우고 있습니다.</h2>
-      </div>
-
-      <div class="card-grid skill-grid">
-        <article class="card">
-          <span class="card-number">01</span>
-          <h3>HTML</h3>
-          <p>시맨틱 태그를 사용해 의미 있고 이해하기 쉬운 웹페이지 구조를 작성합니다.</p>
-          <span class="status">LEARNING</span>
-        </article>
-
-        <article class="card">
-          <span class="card-number">02</span>
-          <h3>CSS</h3>
-          <p>Flexbox와 Grid를 활용해 다양한 화면에 어울리는 레이아웃을 연습하고 있습니다.</p>
-          <span class="status">LEARNING</span>
-        </article>
-
-        <article class="card muted-card">
-          <span class="card-number">03</span>
-          <h3>Next Step</h3>
-          <p>JavaScript와 Git을 학습하고 더 생동감 있는 웹페이지를 만드는 것이 다음 목표입니다.</p>
-          <span class="status">COMING SOON</span>
-        </article>
-      </div>
-    </section>
-
-    <section class="section strengths" id="strengths">
-      <div class="section-heading">
-        <p class="eyebrow">기술</p>
-        <h2>~~~~</h2>
-      </div>
-
-      <div class="strength-list">
-        <article>
-          <span>01</span>
-          <h3>java·Spring</h3>
-          <p>spring framework를 사용하여 웹 애플리케이션을 개발하는 데 익숙합니다.</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h3>Infra/DevOps</h3>
-          <p>인프라 구축과 배포 자동화에 관심이 많으며, Docker와 Kubernetes를 사용한 컨테이너화 경험을 가지고 있습니다.</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h3>AI</h3>
-          <p>Vision AI모델 학습, 서빙한 경험</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section interests" id="interests">
-      <div class="section-heading">
-        <p class="eyebrow">취미와 관심사</p>
-        <h2>생각하고<br>정리하는 것을 좋아합니다.</h2>
-      </div>
-
-      <div class="tag-list" aria-label="취미와 관심사">
-        
-        <span># 기록하기</span>
-        <span># 산책</span>
-        <span># ~~</span>
-      </div>
-      <p class="section-note">취미와 관심사는 추가예정.</p>
-    </section>
-
-    <section class="section goal" id="goal">
-      <div class="goal-content">
-        <p class="eyebrow">앞으로의 목표</p>
-        <h2>
-          AI 역량을 발전시켜<br>
-          <span>~~~~</span>을 만들고 싶습니다.
-        </h2>
-        <p>
-         단기적으로는 ~~~~, 개발자로 성장하는 것이 목표입니다.
-        </p>
-        <a href="#home">처음으로 돌아가기 ↑</a>
-      </div>
+      <div class="guestbook-list"><div class="guestbook-list-head"><h3>방명록</h3><span>한 페이지에 6개씩 표시됩니다.</span></div><div class="messages" id="messages" aria-live="polite"></div><nav class="guest-pagination" id="guestPagination" aria-label="방명록 페이지"></nav></div>
     </section>
   </main>
-
-  <footer>
-    <p>© 2026 Kim Jiwon. Made with HTML &amp; CSS.</p>
-  </footer>
+  <footer><div><span class="online-dot"></span><b>JIWON.zip</b></div><p>계속 배우고, 기록하고, 성장하는 중.</p><span>© 2026 KIM JIWON · MADE WITH CURIOSITY</span></footer>
+  <div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle" aria-describedby="projectModalSummary" hidden>
+    <div class="project-modal-panel">
+      <button class="project-modal-close" type="button" aria-label="프로젝트 상세 닫기">×</button>
+      <span class="project-modal-eyebrow" id="projectModalNumber"></span>
+      <h2 id="projectModalTitle"></h2>
+      <p class="project-modal-summary" id="projectModalSummary"></p>
+      <div class="project-modal-video">
+        <video id="projectModalVideo" controls playsinline preload="metadata" aria-label="프로젝트 포트폴리오 소개 영상">현재 브라우저에서는 프로젝트 영상을 재생할 수 없습니다.</video>
+        <div class="project-video-fallback" id="projectVideoFallback" role="status" hidden><b>영상을 불러오지 못했습니다.</b><p>브라우저에서 지원하지 않는 형식이거나 네트워크 연결이 원활하지 않습니다.</p><a id="projectVideoFallbackLink" href="#" target="_blank" rel="noopener noreferrer">GitHub에서 프로젝트 보기 ↗</a></div>
+      </div>
+      <div class="project-modal-grid"><div><span>MY ROLE</span><p id="projectModalRole"></p></div><div><span>KEY WORK</span><ul id="projectModalWork"></ul></div></div>
+      <div class="project-modal-stack" id="projectModalStack"></div>
+      <a class="project-modal-link" id="projectModalLink" href="#" target="_blank" rel="noopener noreferrer">GitHub에서 프로젝트 보기 <span>↗</span></a>
+    </div>
+  </div>
+  <button class="back-to-top" id="backToTop" type="button" aria-label="맨 위로 이동" title="맨 위로 이동">↑</button>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
   <script src="profile.js"></script>
 </body>
 </html>
