@@ -10,6 +10,10 @@ button,input,textarea,select{font:inherit}
 .online-dot{width:8px;height:8px;border-radius:50%}
 .site-header nav{display:flex;gap:30px;font:11px var(--mono);letter-spacing:.08em}
 .site-header nav a{transition:.2s}
+.theme-controls{display:flex;gap:8px;align-items:center}
+.theme-toggle{padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:transparent;color:inherit;font:9px var(--mono);letter-spacing:.08em;cursor:pointer;transition:.2s}
+.theme-toggle:hover{transform:translateY(-1px)}
+.theme-toggle[aria-pressed="true"]{background:#315fc9;color:#fff;border-color:#315fc9}
 .hero{position:relative;display:grid;align-items:center;overflow:hidden;padding:120px var(--side) 80px}
 .kicker,.section-label,.corner{font:11px var(--mono);letter-spacing:.14em}
 .hero-actions{display:flex;gap:28px;align-items:center;margin-top:38px}
@@ -30,7 +34,7 @@ footer{display:flex;align-items:center;justify-content:space-between;padding:35p
 .toast{position:fixed;z-index:30;right:24px;bottom:24px;transform:translateY(100px);opacity:0;transition:.3s}
 .toast.show{transform:none;opacity:1}
 @media(max-width:900px){.site-header nav{display:none}.hero{grid-template-columns:1fr}.about-heading,.section-title-row{align-items:start;flex-direction:column;gap:25px}.guest-layout{grid-template-columns:1fr;gap:55px}footer{gap:20px;align-items:start;flex-direction:column}}
-@media(max-width:600px){.site-header{height:62px}.hero-actions{align-items:start;flex-direction:column}.section{padding-top:85px;padding-bottom:85px}.log-list article{grid-template-columns:75px 1fr;gap:16px}.log-list .arrow{display:none}.guest-form{padding:24px}footer{padding-bottom:60px}}
+@media(max-width:600px){.site-header{height:62px}.theme-controls{gap:5px}.theme-toggle{padding:7px 8px;font-size:8px}.hero-actions{align-items:start;flex-direction:column}.section{padding-top:85px;padding-bottom:85px}.log-list article{grid-template-columns:75px 1fr;gap:16px}.log-list .arrow{display:none}.guest-form{padding:24px}footer{padding-bottom:60px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 
 /* Calm editorial theme */
@@ -101,6 +105,17 @@ body{font-size:15px}
 .section-title-row{margin-bottom:34px}.section-title-row h2{font-size:clamp(2.15rem,3.7vw,3.45rem)}
 .log-list article{grid-template-columns:100px 1fr 34px;gap:26px;padding:25px 10px}.log-date b{font-size:30px}.log-list h3{margin:9px 0 5px;font-size:18px}.log-list p{font-size:12px}.arrow{font-size:20px}
 .guest-layout{grid-template-columns:.7fr 1.2fr;gap:64px}.visitor-count{margin-top:42px}.visitor-count b{font-size:42px}.guest-form{gap:18px;padding:28px}.message{padding:15px}
+.guest-form{border:1px solid #dce4ee;box-shadow:0 18px 42px rgba(38,54,78,.07)}
+.guest-form label{display:grid;gap:8px}
+.guest-form label span{display:inline-flex;width:max-content;align-items:center;gap:7px;padding:5px 8px;border:1px solid #dbe6f7;border-radius:999px;background:#fff;color:#315fc9;font:9px var(--mono);letter-spacing:.08em}
+.guest-form input,.guest-form textarea{width:100%;border:1px solid #dce4ee;border-radius:14px;background:#fff;color:#25324a;outline:0;transition:border-color .18s ease,box-shadow .18s ease,background .18s ease}
+.guest-form input{height:48px;padding:0 15px}
+.guest-form textarea{min-height:104px;padding:14px 15px;resize:vertical;line-height:1.65}
+.guest-form input::placeholder,.guest-form textarea::placeholder{color:#a0acbd}
+.guest-form input:focus,.guest-form textarea:focus{border-color:#315fc9;background:#fff;box-shadow:0 0 0 4px rgba(49,95,201,.09)}
+.form-help{display:flex;gap:8px;align-items:flex-start;padding:12px 14px;border:1px solid #e3eaf4;border-radius:14px;background:#fff;color:#667085;font-size:12px;line-height:1.6}
+.form-help::before{content:"i";display:grid;flex:none;width:18px;height:18px;place-items:center;border-radius:50%;background:#edf4ff;color:#315fc9;font:11px var(--mono)}
+.guest-form>.primary-btn{justify-self:end;min-width:150px}
 .guestbook-list{margin-top:46px;padding-top:30px;border-top:1px solid var(--line)}.guestbook-list-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:18px}.guestbook-list-head h3{margin:0;font-size:21px}.guestbook-list-head span{color:#98a2b3;font-size:10px}.messages{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.message{min-height:155px;align-content:start}.message p{margin-top:10px;line-height:1.65}.guest-pagination{display:flex;gap:6px;align-items:center;justify-content:center;margin-top:24px}.guest-pagination button{display:grid;width:34px;height:34px;place-items:center;border:1px solid #dbe1ea;border-radius:8px;background:#fff;color:#667085;font-size:11px;cursor:pointer}.guest-pagination button:hover:not(:disabled),.guest-pagination button.active{border-color:#315fc9;background:#315fc9;color:#fff}.guest-pagination button:disabled{cursor:not-allowed;opacity:.35}
 .message-comments{grid-column:1/-1;display:grid;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid #e5ebf2}
 .message-comment{position:relative;padding:11px 42px 11px 12px;border-radius:12px;background:#f6f8fc}
@@ -288,6 +303,8 @@ body{background:#f5f8fb;color:var(--blog-ink)}
   .profile-summary dd,.about-tabs strong,.about-detail-card h3,.about-info-grid strong,.daily-entry-head strong,.daily-recent-list strong,.message b,.message-comment b,.guest-action-dialog h2{color:#eef4ff}
   .github-link{background:#1d2a3d;color:#b9ccff;border-color:#344761}.github-link:hover{background:#22314a}
   .log-list article:hover,.about-tabs button:hover,.about-tabs button.is-active,.daily-recent-list button:hover,.daily-recent-list button.is-active,.daily-days button:hover{background:#1d2a3d}
+  .guest-form label span,.form-help{background:#111b2b;color:#b9ccff;border-color:#344761}
+  .form-help::before{background:#22314a;color:#8fb0ff}
   .guest-form input,.guest-form textarea,.guest-action-dialog input,.guest-action-dialog textarea,.daily-entry-card input,.daily-entry-card select,.daily-entry-card textarea{background:#101826;color:#eef4ff;border-color:#344761}
   .guest-form input:focus,.guest-form textarea:focus,.guest-action-dialog input:focus,.guest-action-dialog textarea:focus,.daily-entry-card input:focus,.daily-entry-card select:focus,.daily-entry-card textarea:focus,.message-comment-form input:focus{background:#111b2b;border-color:#8fb0ff;box-shadow:0 0 0 4px rgba(143,176,255,.12)}
   .message-actions button,.message-comment button,.guest-pagination button{background:#101826;color:#aab7ca;border-color:#344761}
@@ -303,3 +320,105 @@ body{background:#f5f8fb;color:var(--blog-ink)}
   .nav-toggle span{background:#eef4ff}
   @media(max-width:900px){.site-header nav{background:rgba(16,24,38,.98);border-color:#2b3a52}.site-header nav a{border-color:#25344b;color:#d7e2f3}}
 }
+
+html[data-theme="dark"]{--ink:#0f1724;--panel:#172033;--panel2:#1d2a3d;--cream:#eef4ff;--muted:#aab7ca;--lime:#7fa0ff;--purple:#8fa7f0;--pink:#ef9aae;--line:#2b3a52;--blog-ink:#eef4ff;--blog-muted:#aab7ca;--blog-blue:#8fb0ff;--blog-mint:#65c89c;--blog-coral:#f09b7f;--blog-soft:#101826;--blog-line:#2b3a52;color-scheme:dark}
+html[data-theme="dark"] body{background:#101826;color:#eef4ff}
+html[data-theme="dark"] .site-header{background:rgba(16,24,38,.9);border-color:#2b3a52}
+html[data-theme="dark"] .site-header nav a{color:#aab7ca}
+html[data-theme="dark"] .site-header nav a:hover,html[data-theme="dark"] .site-header nav a[aria-current="true"]{color:#8fb0ff}
+html[data-theme="dark"] .logo,html[data-theme="dark"] .hero h1 span:only-child,html[data-theme="dark"] footer div{color:#eef4ff}
+html[data-theme="dark"] .hero{background:linear-gradient(135deg,rgba(16,24,38,.98),rgba(20,31,48,.92) 58%,rgba(24,45,42,.74)),radial-gradient(circle at 86% 20%,rgba(101,200,156,.16),transparent 31%),radial-gradient(circle at 15% 82%,rgba(240,155,127,.12),transparent 27%)}
+html[data-theme="dark"] .hero h1 span,html[data-theme="dark"] .hero-intro,html[data-theme="dark"] .about-heading p,html[data-theme="dark"] .guest-layout>div>p,html[data-theme="dark"] .log-list p,html[data-theme="dark"] .now-heading>p,html[data-theme="dark"] .daily-log-intro p{color:#aab7ca}
+html[data-theme="dark"] .kicker,html[data-theme="dark"] .secondary-btn,html[data-theme="dark"] .player-card,html[data-theme="dark"] .about,html[data-theme="dark"] .guestbook,html[data-theme="dark"] .now-life,html[data-theme="dark"] footer,html[data-theme="dark"] .guest-form,html[data-theme="dark"] .message,html[data-theme="dark"] .message-comment-form input,html[data-theme="dark"] .project-modal-panel,html[data-theme="dark"] .project-modal-close,html[data-theme="dark"] .guest-action-dialog form,html[data-theme="dark"] .guest-action-close,html[data-theme="dark"] .about-tabs button,html[data-theme="dark"] .about-detail-card,html[data-theme="dark"] .about-info-grid div,html[data-theme="dark"] .about-chip-row span,html[data-theme="dark"] .daily-log-summary,html[data-theme="dark"] .daily-calendar-card,html[data-theme="dark"] .daily-entry-card,html[data-theme="dark"] .daily-calendar-head button,html[data-theme="dark"] .daily-recent-list button,html[data-theme="dark"] .daily-days button,html[data-theme="dark"] .conversation-starter,html[data-theme="dark"] .replay-intro{background:#172033;color:#eef4ff;border-color:#2b3a52}
+html[data-theme="dark"] .theme-toggle{border-color:#344761;color:#d7e2f3}
+html[data-theme="dark"] .theme-toggle[aria-pressed="true"]{background:#8fb0ff;color:#0d1420;border-color:#8fb0ff}
+html[data-theme="dark"] .player-card,html[data-theme="dark"] .about-detail-card,html[data-theme="dark"] .daily-calendar-card,html[data-theme="dark"] .daily-entry-card{box-shadow:0 22px 56px rgba(0,0,0,.28)}
+html[data-theme="dark"] .primary-btn{background:#8fb0ff;color:#0d1420;box-shadow:0 14px 28px rgba(0,0,0,.24)}
+html[data-theme="dark"] .primary-btn:hover{background:#b3c7ff}
+html[data-theme="dark"] .secondary-btn{color:#c7f3dd}
+html[data-theme="dark"] .secondary-btn:hover{border-color:#65c89c;color:#e2fff0}
+html[data-theme="dark"] .profile-card-head,html[data-theme="dark"] .profile-summary>div,html[data-theme="dark"] .guestbook-list,html[data-theme="dark"] .message-comments,html[data-theme="dark"] .daily-recent,html[data-theme="dark"] .daily-entry-head{border-color:#2b3a52}
+html[data-theme="dark"] .profile-card-head .profile-initial,html[data-theme="dark"] .profile-initial{background:#22314a;color:#b9ccff;box-shadow:none}
+html[data-theme="dark"] .profile-card-head span,html[data-theme="dark"] .profile-summary dt,html[data-theme="dark"] .card-top,html[data-theme="dark"] .guestbook-list-head span,html[data-theme="dark"] .message time,html[data-theme="dark"] .message-comment time,html[data-theme="dark"] .message-comment-empty,html[data-theme="dark"] .daily-week,html[data-theme="dark"] .daily-recent-head small,html[data-theme="dark"] .daily-entry-head span,html[data-theme="dark"] .daily-entry-card label span,html[data-theme="dark"] .daily-log-summary span,html[data-theme="dark"] .daily-log-summary small,html[data-theme="dark"] .about-tabs small,html[data-theme="dark"] .about-info-grid small{color:#8f9fb5}
+html[data-theme="dark"] .profile-summary dd,html[data-theme="dark"] .about-tabs strong,html[data-theme="dark"] .about-detail-card h3,html[data-theme="dark"] .about-info-grid strong,html[data-theme="dark"] .daily-entry-head strong,html[data-theme="dark"] .daily-recent-list strong,html[data-theme="dark"] .message b,html[data-theme="dark"] .message-comment b,html[data-theme="dark"] .guest-action-dialog h2{color:#eef4ff}
+html[data-theme="dark"] .github-link{background:#1d2a3d;color:#b9ccff;border-color:#344761}
+html[data-theme="dark"] .github-link:hover{background:#22314a}
+html[data-theme="dark"] .log-list article:hover,html[data-theme="dark"] .about-tabs button:hover,html[data-theme="dark"] .about-tabs button.is-active,html[data-theme="dark"] .daily-recent-list button:hover,html[data-theme="dark"] .daily-recent-list button.is-active,html[data-theme="dark"] .daily-days button:hover{background:#1d2a3d}
+html[data-theme="dark"] .guest-form input,html[data-theme="dark"] .guest-form textarea,html[data-theme="dark"] .guest-action-dialog input,html[data-theme="dark"] .guest-action-dialog textarea,html[data-theme="dark"] .daily-entry-card input,html[data-theme="dark"] .daily-entry-card select,html[data-theme="dark"] .daily-entry-card textarea{background:#101826;color:#eef4ff;border-color:#344761}
+html[data-theme="dark"] .guest-form label span,html[data-theme="dark"] .form-help{background:#111b2b;color:#b9ccff;border-color:#344761}
+html[data-theme="dark"] .form-help::before{background:#22314a;color:#8fb0ff}
+html[data-theme="dark"] .guest-form input:focus,html[data-theme="dark"] .guest-form textarea:focus,html[data-theme="dark"] .guest-action-dialog input:focus,html[data-theme="dark"] .guest-action-dialog textarea:focus,html[data-theme="dark"] .daily-entry-card input:focus,html[data-theme="dark"] .daily-entry-card select:focus,html[data-theme="dark"] .daily-entry-card textarea:focus,html[data-theme="dark"] .message-comment-form input:focus{background:#111b2b;border-color:#8fb0ff;box-shadow:0 0 0 4px rgba(143,176,255,.12)}
+html[data-theme="dark"] .message-actions button,html[data-theme="dark"] .message-comment button,html[data-theme="dark"] .guest-pagination button{background:#101826;color:#aab7ca;border-color:#344761}
+html[data-theme="dark"] .message p,html[data-theme="dark"] .message-comment p,html[data-theme="dark"] .project-modal-summary,html[data-theme="dark"] .guest-action-dialog p,html[data-theme="dark"] .project-modal-grid p,html[data-theme="dark"] .project-modal-grid ul,html[data-theme="dark"] .about-detail-card>p,html[data-theme="dark"] .about-info-grid p,html[data-theme="dark"] .now-card p,html[data-theme="dark"] .daily-recent-empty{color:#aab7ca}
+html[data-theme="dark"] .message-comment,html[data-theme="dark"] .project-modal-grid>div,html[data-theme="dark"] .daily-recent-empty,html[data-theme="dark"] .daily-days button,html[data-theme="dark"] .daily-recent-list button,html[data-theme="dark"] .daily-entry-card input,html[data-theme="dark"] .daily-entry-card select,html[data-theme="dark"] .daily-entry-card textarea{background:#111b2b}
+html[data-theme="dark"] .guest-pagination button:hover:not(:disabled),html[data-theme="dark"] .guest-pagination button.active,html[data-theme="dark"] .message-comment-form button,html[data-theme="dark"] .back-to-top,html[data-theme="dark"] .toast{background:#8fb0ff;color:#0d1420}
+html[data-theme="dark"] .daily-section{background:#111b2b}
+html[data-theme="dark"] .daily-days button.is-selected{background:#eef4ff;color:#101826}
+html[data-theme="dark"] .daily-days button.is-today{border-color:#f09b7f;color:#f4b29c}
+html[data-theme="dark"] .daily-recent-list small{background:#173529;color:#8ee3b6}
+html[data-theme="dark"] .now-card{background:#172033;border-color:#2b3a52}
+html[data-theme="dark"] .now-card.featured{background:#0d1420}
+html[data-theme="dark"] .now-card.connect{background:#315fc9}
+html[data-theme="dark"] .conversation-starter p{color:#eef4ff}
+html[data-theme="dark"] .conversation-starter button{background:#101826;color:#b9ccff;border-color:#344761}
+html[data-theme="dark"] .nav-toggle span{background:#eef4ff}
+@media(max-width:900px){html[data-theme="dark"] .site-header nav{background:rgba(16,24,38,.98);border-color:#2b3a52}html[data-theme="dark"] .site-header nav a{border-color:#25344b;color:#d7e2f3}}
+
+html[data-theme="vivid"]{--blog-ink:#15122a;--blog-blue:#5a35ff;--blog-mint:#00c986;--blog-coral:#ff6b4a;--blog-line:#dacfff;--active-accent:#ff4fb8;color-scheme:light}
+html[data-theme="vivid"] body{background:#fff8f0;color:#15122a}
+html[data-theme="vivid"] .site-header{background:rgba(255,248,240,.9);border-color:#eadfff}
+html[data-theme="vivid"] .theme-toggle{border-color:#ff8bd2;background:#ff4fb8;color:#fff;box-shadow:0 8px 18px rgba(255,79,184,.22)}
+html[data-theme="vivid"] .site-header nav a{color:#5b5870}
+html[data-theme="vivid"] .site-header nav a:hover,html[data-theme="vivid"] .site-header nav a[aria-current="true"]{color:#ff4fb8}
+html[data-theme="vivid"] .hero{background:linear-gradient(135deg,rgba(255,255,255,.94),rgba(255,244,230,.82) 45%,rgba(225,255,243,.8)),radial-gradient(circle at 82% 18%,rgba(0,201,134,.3),transparent 29%),radial-gradient(circle at 10% 78%,rgba(255,79,184,.24),transparent 30%),radial-gradient(circle at 52% 10%,rgba(90,53,255,.17),transparent 28%)}
+html[data-theme="vivid"] .hero::before{border-color:rgba(255,79,184,.28)}
+html[data-theme="vivid"] .hero::after{border-color:rgba(0,201,134,.24);box-shadow:0 0 0 6vw rgba(0,201,134,.08),0 0 0 12vw rgba(255,107,74,.06)}
+html[data-theme="vivid"] .kicker{border-color:rgba(255,79,184,.25);background:#fff;color:#5a35ff;box-shadow:0 10px 22px rgba(90,53,255,.08)}
+html[data-theme="vivid"] .kicker::before{background:#ff4fb8}
+html[data-theme="vivid"] .hero h1 span,html[data-theme="vivid"] .about-heading em,html[data-theme="vivid"] .guest-layout em,html[data-theme="vivid"] .now-heading h2 em{color:#ff4fb8}
+html[data-theme="vivid"] .hero-intro,html[data-theme="vivid"] .about-heading p,html[data-theme="vivid"] .guest-layout>div>p,html[data-theme="vivid"] .now-heading>p,html[data-theme="vivid"] .daily-log-intro p{color:#625b76}
+html[data-theme="vivid"] .primary-btn{background:#15122a;color:#fff;box-shadow:0 12px 26px rgba(21,18,42,.18)}
+html[data-theme="vivid"] .primary-btn:hover{background:#5a35ff;box-shadow:0 14px 28px rgba(90,53,255,.22)}
+html[data-theme="vivid"] .secondary-btn{border-color:#a9efd8;background:#fff;color:#007954}
+html[data-theme="vivid"] .secondary-btn:hover{border-color:#00c986;color:#006345;box-shadow:0 12px 24px rgba(0,201,134,.16)}
+html[data-theme="vivid"] .player-card,html[data-theme="vivid"] .about,html[data-theme="vivid"] .guestbook,html[data-theme="vivid"] .now-life,html[data-theme="vivid"] footer,html[data-theme="vivid"] .guest-form,html[data-theme="vivid"] .message,html[data-theme="vivid"] .about-tabs button,html[data-theme="vivid"] .about-detail-card,html[data-theme="vivid"] .daily-calendar-card,html[data-theme="vivid"] .daily-entry-card,html[data-theme="vivid"] .conversation-starter,html[data-theme="vivid"] .guest-action-dialog form{border-color:#eadfff;background:#fff}
+html[data-theme="vivid"] .player-card,html[data-theme="vivid"] .about-detail-card,html[data-theme="vivid"] .daily-calendar-card,html[data-theme="vivid"] .daily-entry-card{box-shadow:0 24px 54px rgba(90,53,255,.1)}
+html[data-theme="vivid"] .profile-card-head .profile-initial{background:linear-gradient(145deg,#ffe2f5,#defcf2)}
+html[data-theme="vivid"] .profile-summary dt,html[data-theme="vivid"] .card-top,html[data-theme="vivid"] .about-tabs small,html[data-theme="vivid"] .guestbook-list-head span,html[data-theme="vivid"] .message time,html[data-theme="vivid"] .message-comment time,html[data-theme="vivid"] .daily-week,html[data-theme="vivid"] .daily-recent-head small,html[data-theme="vivid"] .daily-entry-head span,html[data-theme="vivid"] .daily-entry-card label span{color:#8b829d}
+html[data-theme="vivid"] .github-link{border-color:#dbd0ff;background:linear-gradient(135deg,#f2edff,#e9fff8);color:#5a35ff}
+html[data-theme="vivid"] .about-tabs button:hover,html[data-theme="vivid"] .about-tabs button.is-active{border-color:rgba(255,79,184,.35);box-shadow:0 14px 30px rgba(255,79,184,.12)}
+html[data-theme="vivid"] .about-tabs button span,html[data-theme="vivid"] .about-tabs button.is-active span{background:#5a35ff;color:#fff}
+html[data-theme="vivid"] .about-detail-card::after{border-color:rgba(255,79,184,.22);box-shadow:0 0 0 45px rgba(0,201,134,.08)}
+html[data-theme="vivid"] .about-detail-card>span,html[data-theme="vivid"] .about-chip-row span,html[data-theme="vivid"] .section-title-row a,html[data-theme="vivid"] .visitor-count b{color:#ff4fb8}
+html[data-theme="vivid"] .about-chip-row span,html[data-theme="vivid"] .category{border-color:#ffd0eb;background:#fff7fc}
+html[data-theme="vivid"] .log-list article:hover{background:#fff4fb}
+html[data-theme="vivid"] .category.lime{border-color:#a9efd8;color:#00845c;background:#f0fff9}
+html[data-theme="vivid"] .category.pink{border-color:#ffd0df;color:#d74562;background:#fff5f7}
+html[data-theme="vivid"] .daily-section{background:#f2fff9}
+html[data-theme="vivid"] .daily-log-intro h2 em,html[data-theme="vivid"] .daily-log-summary strong{color:#00a972}
+html[data-theme="vivid"] .daily-days button.has-entry::after{background:#00c986}
+html[data-theme="vivid"] .daily-days button{background:#fff9fd;color:#15122a}
+html[data-theme="vivid"] .daily-days button:hover{border-color:#00c986;background:#fff}
+html[data-theme="vivid"] .daily-days button.is-today{border-color:#ff8f75;color:#e15335}
+html[data-theme="vivid"] .daily-days button.is-selected{background:#5a35ff;color:#fff;box-shadow:0 12px 24px rgba(90,53,255,.22)}
+html[data-theme="vivid"] .daily-recent-list button{background:#fff9fd}
+html[data-theme="vivid"] .daily-recent-list button:hover,html[data-theme="vivid"] .daily-recent-list button.is-active{border-color:#ff8bd2}
+html[data-theme="vivid"] .daily-recent-list small{background:#e7fff6;color:#00845c}
+html[data-theme="vivid"] .now-card{border-color:#eadfff;background:#fff9fd}
+html[data-theme="vivid"] .now-card.featured{background:#15122a}
+html[data-theme="vivid"] .now-card.connect{background:#5a35ff}
+html[data-theme="vivid"] .mini-tags i{border-color:#6e5cff;color:#dcd5ff}
+html[data-theme="vivid"] .conversation-starter{background:linear-gradient(135deg,#fff0fa,#effff8)}
+html[data-theme="vivid"] .conversation-starter span{color:#ff4fb8}
+html[data-theme="vivid"] .conversation-starter button{border-color:#ffd0eb;color:#ff4fb8}
+html[data-theme="vivid"] .guest-form input,html[data-theme="vivid"] .guest-form textarea,html[data-theme="vivid"] .guest-action-dialog input,html[data-theme="vivid"] .guest-action-dialog textarea,html[data-theme="vivid"] .daily-entry-card input,html[data-theme="vivid"] .daily-entry-card select,html[data-theme="vivid"] .daily-entry-card textarea,html[data-theme="vivid"] .message-comment-form input{border-color:#eadfff;background:#fff9fd;color:#15122a}
+html[data-theme="vivid"] .guest-form label span,html[data-theme="vivid"] .form-help{border-color:#ffd0eb;background:#fff7fc;color:#ff4fb8}
+html[data-theme="vivid"] .form-help::before{background:#ffe2f5;color:#ff4fb8}
+html[data-theme="vivid"] .guest-form input:focus,html[data-theme="vivid"] .guest-form textarea:focus,html[data-theme="vivid"] .guest-action-dialog input:focus,html[data-theme="vivid"] .guest-action-dialog textarea:focus,html[data-theme="vivid"] .daily-entry-card input:focus,html[data-theme="vivid"] .daily-entry-card select:focus,html[data-theme="vivid"] .daily-entry-card textarea:focus,html[data-theme="vivid"] .message-comment-form input:focus{border-color:#ff4fb8;box-shadow:0 0 0 4px rgba(255,79,184,.12)}
+html[data-theme="vivid"] .message-comment,html[data-theme="vivid"] .project-modal-grid>div{background:#fff7fc}
+html[data-theme="vivid"] .message-actions button,html[data-theme="vivid"] .message-comment button,html[data-theme="vivid"] .guest-pagination button{border-color:#eadfff;background:#fff;color:#625b76}
+html[data-theme="vivid"] .message-actions button:hover,html[data-theme="vivid"] .message-comment button:hover{border-color:#ff4fb8;color:#ff4fb8}
+html[data-theme="vivid"] .guest-pagination button:hover:not(:disabled),html[data-theme="vivid"] .guest-pagination button.active,html[data-theme="vivid"] .message-comment-form button,html[data-theme="vivid"] .back-to-top,html[data-theme="vivid"] .toast{background:#ff4fb8;color:#fff}
+html[data-theme="vivid"] .project-modal-panel,html[data-theme="vivid"] .guest-action-dialog form{background:#fff;color:#15122a;border-color:#eadfff}
+html[data-theme="vivid"] .project-modal-link{background:#5a35ff}
+@media(max-width:900px){html[data-theme="vivid"] .site-header nav{background:rgba(255,248,240,.98);border-color:#eadfff}html[data-theme="vivid"] .site-header nav a{border-color:#f0e7ff;color:#514b64}}

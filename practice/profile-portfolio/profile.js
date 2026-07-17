@@ -5,6 +5,7 @@ const store = {
   set(key, value) { localStorage.setItem(key, JSON.stringify(value)); }
 };
 const REMEMBERED_GUEST_ID_KEY = 'jiwon-remembered-guest-id';
+const THEME_MODE_KEY = 'jiwon-theme-mode';
 const config = window.SUPABASE_CONFIG;
 const db = window.supabase?.createClient(config.url, config.publishableKey);
 const toast = (message) => {
@@ -14,6 +15,30 @@ const toast = (message) => {
   setTimeout(() => element.classList.remove('show'), 2500);
 };
 const escapeHtml = (text) => { const div = document.createElement('div'); div.textContent = text; return div.innerHTML; };
+
+function applyThemeMode(mode) {
+  const vivid = mode === 'vivid';
+  const dark = mode === 'dark';
+  document.documentElement.dataset.theme = vivid ? 'vivid' : dark ? 'dark' : 'default';
+  const colorButton = $('#themeToggle');
+  const darkButton = $('#darkModeToggle');
+  colorButton?.setAttribute('aria-pressed', String(vivid));
+  darkButton?.setAttribute('aria-pressed', String(dark));
+  if (colorButton) colorButton.textContent = vivid ? 'CALM MODE' : 'COLOR MODE';
+  if (darkButton) darkButton.textContent = dark ? 'AUTO MODE' : 'DARK MODE';
+}
+
+applyThemeMode(store.get(THEME_MODE_KEY, 'default'));
+$('#themeToggle')?.addEventListener('click', () => {
+  const nextMode = document.documentElement.dataset.theme === 'vivid' ? 'default' : 'vivid';
+  store.set(THEME_MODE_KEY, nextMode);
+  applyThemeMode(nextMode);
+});
+$('#darkModeToggle')?.addEventListener('click', () => {
+  const nextMode = document.documentElement.dataset.theme === 'dark' ? 'default' : 'dark';
+  store.set(THEME_MODE_KEY, nextMode);
+  applyThemeMode(nextMode);
+});
 
 const guestActionDialog = $('#guestActionDialog');
 const guestActionForm = $('#guestActionForm');
