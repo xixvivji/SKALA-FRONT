@@ -1,5 +1,9 @@
 # 여행의 발견
 
+> **과제 구분:** 종합과제
+>
+> **PDF 문서:** [종합과제 README PDF 보기](../../output/pdf/assignment-readme.pdf)
+
 국내 여섯 도시의 여행 정보를 살펴보고 나만의 여행 일정과 준비 항목을 관리할 수 있는 웹사이트입니다. 여러 페이지를 목적에 따라 분리하고, JavaScript ES Modules와 Local Storage를 활용해 사용자별 데이터를 유지하도록 구현했습니다.
 
 ## 실행 결과
