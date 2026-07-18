@@ -53,10 +53,14 @@ function closeGuestActionDialog(result = null) {
 
 function openGuestActionDialog({ mode, title, description, submitText, initialMessage = '' }) {
   const showMessage = mode === 'edit';
+  const passwordInput = $('#guestActionPassword');
   $('#guestActionTitle').textContent = title;
   $('#guestActionDescription').textContent = description;
   $('#guestActionSubmit').replaceChildren(document.createTextNode(`${submitText} `), Object.assign(document.createElement('span'), { textContent: '↗' }));
-  $('#guestActionPassword').value = '';
+  passwordInput.value = '';
+  passwordInput.minLength = mode === 'admin' ? 8 : 4;
+  passwordInput.maxLength = mode === 'admin' ? 72 : 32;
+  passwordInput.placeholder = mode === 'admin' ? '관리자 비밀번호' : '비밀번호';
   $('#guestActionMessage').value = initialMessage;
   $('#guestActionMessageWrap').hidden = !showMessage;
   $('#guestActionMessage').required = showMessage;
@@ -452,8 +456,7 @@ window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMobi
 
 const dailyCalendar = $('#dailyCalendar');
 if (dailyCalendar) {
-  const DAILY_LOG_KEY = 'jiwon-daily-logs';
-  const dailyLogs = store.get(DAILY_LOG_KEY, {});
+  const dailyLogs = {};
   const today = new Date();
   let visibleMonth = new Date(today.getFullYear(), today.getMonth(), 1);
   let selectedDateKey = toDateKey(today);
@@ -488,10 +491,6 @@ if (dailyCalendar) {
 
   function parseDateKey(key) {
     return new Date(`${key}T00:00:00`);
-  }
-
-  function saveDailyLogs() {
-    store.set(DAILY_LOG_KEY, dailyLogs);
   }
 
   function formatSelectedDate(key) {
@@ -593,28 +592,92 @@ if (dailyCalendar) {
     renderDailyCalendar();
   });
 
-  dailyElements.form.addEventListener('submit', (event) => {
+  async function loadDailyLogs() {
+    if (!db) {
+      toast('데일리로그 DB 연결을 확인해 주세요.');
+      renderDailyCalendar();
+      return;
+    }
+
+    const { data, error } = await db
+      .from('daily_logs')
+      .select('log_date,title,tag,mood,note')
+      .order('log_date', { ascending: false });
+
+    if (error) {
+      toast('데일리로그 DB 설정이 필요합니다.');
+      renderDailyCalendar();
+      return;
+    }
+
+    Object.keys(dailyLogs).forEach((key) => delete dailyLogs[key]);
+    (data || []).forEach((entry) => {
+      dailyLogs[entry.log_date] = {
+        title: entry.title,
+        tag: entry.tag,
+        mood: entry.mood,
+        note: entry.note
+      };
+    });
+    renderDailyCalendar();
+  }
+
+  dailyElements.form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    dailyLogs[selectedDateKey] = {
-      title: dailyElements.title.value.trim() || '제목 없는 하루',
-      tag: dailyElements.tag.value,
-      mood: dailyElements.mood.value,
-      note: dailyElements.note.value.trim()
-    };
-    saveDailyLogs();
+    if (!db) return toast('데일리로그 DB 연결을 확인해 주세요.');
+    const title = dailyElements.title.value.trim();
+    if (!title) return toast('제목을 입력해 주세요.');
+
+    const result = await openGuestActionDialog({
+      mode: 'admin',
+      title: '데일리로그 저장',
+      description: `${formatSelectedDate(selectedDateKey)} 기록을 저장하려면 관리자 비밀번호를 입력해 주세요.`,
+      submitText: '저장'
+    });
+    if (!result?.password) return;
+
+    const submitButton = event.submitter;
+    submitButton.disabled = true;
+    const { error } = await db.rpc('upsert_daily_log', {
+      p_password: result.password,
+      p_log_date: selectedDateKey,
+      p_title: title,
+      p_tag: dailyElements.tag.value,
+      p_mood: dailyElements.mood.value,
+      p_note: dailyElements.note.value.trim()
+    });
+    submitButton.disabled = false;
+    if (error) return toast(error.message);
+
     toast('하루 기록을 저장했습니다.');
-    renderDailyCalendar();
+    await loadDailyLogs();
   });
 
-  dailyElements.deleteButton.addEventListener('click', () => {
+  dailyElements.deleteButton.addEventListener('click', async () => {
     if (!dailyLogs[selectedDateKey]) return;
-    delete dailyLogs[selectedDateKey];
-    saveDailyLogs();
+    if (!db) return toast('데일리로그 DB 연결을 확인해 주세요.');
+
+    const result = await openGuestActionDialog({
+      mode: 'admin',
+      title: '데일리로그 삭제',
+      description: `${formatSelectedDate(selectedDateKey)} 기록을 삭제하려면 관리자 비밀번호를 입력해 주세요.`,
+      submitText: '삭제'
+    });
+    if (!result?.password) return;
+
+    dailyElements.deleteButton.disabled = true;
+    const { error } = await db.rpc('delete_daily_log', {
+      p_password: result.password,
+      p_log_date: selectedDateKey
+    });
+    dailyElements.deleteButton.disabled = false;
+    if (error) return toast(error.message);
+
     toast('하루 기록을 삭제했습니다.');
-    renderDailyCalendar();
+    await loadDailyLogs();
   });
 
-  renderDailyCalendar();
+  loadDailyLogs();
 }
 
 const motionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
