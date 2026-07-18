@@ -186,7 +186,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .terms-check input { width: 20px; height: 20px; min-height: 0; flex: 0 0 auto; margin-top: 2px; accent-color: var(--primary); }
 .terms-check label { cursor: pointer; color: var(--ink); font-size: .9rem; font-weight: 750; }
 .choice-group { display: flex; flex-wrap: wrap; gap: 9px; }
-.choice-group input { position: absolute; opacity: 0; pointer-events: none; }
+.choice-group input { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; clip: rect(0, 0, 0, 0); }
 .choice-group label { padding: 10px 15px; border: 1px solid var(--line); border-radius: 999px; cursor: pointer; color: var(--muted); background: var(--surface); font-weight: 700; }
 .choice-group input:checked + label { color: var(--on-image); border-color: var(--primary); background: var(--primary); }
 .choice-group input:focus-visible + label { outline: 3px solid var(--primary-glow); }
@@ -325,6 +325,7 @@ td { font-size: .94rem; }
 .text-button { padding: 9px 10px; border: 0; cursor: pointer; color: var(--muted); background: transparent; font-size: .8rem; font-weight: 800; }
 .text-button.danger:hover { color: var(--danger-text); }
 .calendar-card, .day-planner { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow); }
+#calendar, #day-planner { scroll-margin-top: 100px; }
 .calendar-toolbar { display: flex; align-items: center; justify-content: center; gap: 20px; padding: 22px 26px; border-bottom: 1px solid var(--line); }
 .calendar-toolbar h2 { min-width: 150px; margin: 0; text-align: center; font-size: 1.35rem; }
 .calendar-weekdays, .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); }

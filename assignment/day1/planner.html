@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="여행지별 준비 항목을 관리하는 여행 플래너"><title>여행 계획 — 여행의 발견</title><link rel="stylesheet" href="assets/css/style.css">
+  <meta name="description" content="여행지별 준비 항목을 관리하는 여행 플래너"><title>여행 계획 — 여행의 발견</title><link rel="stylesheet" href="assets/css/style.css?v=2">
   <meta name="author" content="김지원">
 </head>
 <body id="top">
@@ -26,13 +26,13 @@
             <div class="trip-overview-actions"><strong id="trip-dday" class="trip-dday"></strong><a id="destination-link" class="button secondary" href="destination.html">여행지 보기</a><button id="edit-trip" class="button secondary" type="button">기본정보 수정</button><button id="delete-trip" class="text-button danger" type="button">여행 삭제</button></div>
           </section>
 
-          <section class="calendar-card" aria-labelledby="calendar-title">
+          <section id="calendar" class="calendar-card" aria-labelledby="calendar-title">
             <div class="calendar-toolbar"><button id="calendar-prev" class="icon-button" type="button" aria-label="이전 달">←</button><h2 id="calendar-title" aria-live="polite"></h2><button id="calendar-next" class="icon-button" type="button" aria-label="다음 달">→</button></div>
             <div class="calendar-weekdays" aria-hidden="true"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
             <div id="calendar-grid" class="calendar-grid"></div>
           </section>
 
-          <section class="day-planner" aria-labelledby="selected-date-title">
+          <section id="day-planner" class="day-planner" aria-labelledby="selected-date-title">
             <div class="day-planner-heading"><div><p class="eyebrow">Selected Day</p><h2 id="selected-date-title">날짜를 선택하세요</h2></div><p id="todo-summary">전체 0개 · 완료 0개</p></div>
             <form id="todo-form" class="todo-form">
               <div class="form-group"><label for="todo-kind">항목 유형</label><select id="todo-kind"><option value="schedule">시간 일정</option><option value="preparation">준비 항목</option></select></div>
